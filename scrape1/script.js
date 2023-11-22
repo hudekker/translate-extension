@@ -54,7 +54,10 @@ async function scrapeAndDisplay() {
         });
 
         // Compile paragraphs into a text document with line spaces
-        const compiledText = paragraphs.map(paragraph => paragraph.textContent).join('\n\n');
+        // const compiledText = paragraphs.map(paragraph => paragraph.textContent).join('\n\n');
+        // Compile paragraphs into a text document with line breaks
+        const compiledText = paragraphs.map(paragraph => paragraph.outerHTML).join('\n\n');
+
 
         // Display the title and compiled text on the page
         resultsContainer.innerHTML = `
