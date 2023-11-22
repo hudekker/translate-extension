@@ -1,0 +1,103 @@
+
+T
+Display the following document in a format of alternating paragraphs of the original chinese with its english translation.  If the original is English the reverse these instructions.
+
+T+Pinyin
+Display the following document in a format of alternating paragraphs of the original chinese with its english translation.  If the original is English the reverse these instructions.
+
+T+G
+display the following document in a format of alternating paragraphs of the original chinese with its english translation.  for each chinese paragraph please list any complex chinese grammar or difficult words
+
+
+
+
+display the following document in a format of alternating paragraphs of the original chinese with its english translation.  for each chinese paragraph if there is complex chinese grammar or difficult vocabulary words please list and explain.
+
+This is better:
+
+
+for this paragraph below please rewrite this paragraph and alternate each chinese sentence with its pinyin.  after doing this, then skip a line, and add a paragraph of its english translation
+
+
+display the following document in a format of alternating paragraphs of the original chinese with its english translation.  for the chinese paragraph show the pinyin after each sentence . for each chinese paragraph if there is complex chinese grammar or difficult vocabulary words please list and explain.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+For the following document please re-display the document and for paragraph should be immediately followed by its traditional Chinese language translation.  Please use 比較口語中文.  Please do not list any paragraph headings or numbers.
+
+Bilingual translation to English
+ I want you to bilingual translate to English the following document which means that I want each Chinese paragraph followed immediately by its English translation.  For example for each Chinese paragraph, please list the original Chinese paragraph, and immediately after this paragraph, translate it to English along. Then, continue so on for the entire document. Please give line spacing between every paragraph, including the line spacing between all paragraphs. I do not want paragraph numbering. 
+
+
+
+
+Bilingual translation to Chinese
+ I want you to 'interleave translate to Chinese' the following document which means that I want each paragraph followed by its translation immediately.  For example for each paragraph, please list the original paragraph, and immediately after this paragraph, translate it to Chinese using traditional Chinese characters (Taiwan). Then, continue so on for the entire document. Please give line spacing between every paragraph, including the line spacing between all paragraphs. I do not want paragraph numbering. Translation to Chinese should use 比較口語用法.”.  
+
+
+Bilingual translation to English 
+Please interleave the original Chinese paragraphs with their English translations.  There should be a Chinese paragraph, its English translation, then the next Chinese paragraph, its English translation and so on.
+
+Grammar and vocabulary 
+Great, now please re-list the above and after each chinese paragraph, if that paragraph has any complicated Chinese grammar or difficult Chinese vocabulary words, then please immediately add a paragraph where you explain the Chinese grammar and Chinese vocabulary words.  Please also list the english paragraph along with its associated chinese paragraph
+
+Vocabulary
+please re-list the above and for each chinese paragraph immediately afterwards add a paragraph explaining any complicated or difficult vocabulary words that are no person's names or place names
+
+
+
+For example please list the original untranslated paragraph, and immediately after this paragraph, translate it to Chinese using traditional Chinese characters (Taiwan), explain any complicated Chinese grammar, and explain any difficult Chinese words that are no people or places. Then, continue with the second paragraph, followed by its translation to Chinese, explanation of Chinese grammar, explanation of difficult Chinese words, and so on for the entire document. Please give line spacing between every paragraph, including the line spacing between all paragraphs. I do not want paragraph numbering. Translation to Chinese should use 比較口語用法.”.  
+
+
+
+
+
+
+
+
+
+
+
+
+I want you to do the following for each paragraph in the document I give you:
+
+* List the original paragraph exactly as it is
+
+* Add a translation of that paragraph directly below that paragraph.  If the original is Chinese then translate to English.  If original is English then translate to Chinese.  Always use traditional Chinese characters (Taiwan)
+
+* Add a paragraph which is the pinyin for the Chinese paragraph.
+
+* Add a section which describes the grammatical structure of each Chinese sentence
+
+* Add a section which explains difficult Chinese words or phrases such as 成語
+
+Continue in this format for the next paragraph and so on until until the entire document is complete.  
+
+Remember: In all cases always use traditional Chinese characters (Taiwan) and do no use simplified Chinese characters.
+
+Remember and this is very important.  I do not want you to list the entire document, then translate the entire document, then give the pinyin for the entire document.  Instead I want this to be one paragraph by one paragraph.  For paragraph 1 I want the translation, pinyin, Chinese grammar explanation, and Chinese difficult words explanation , then move on and do the same for the next paragraph, and the next paragraph and the next paragraph so on until the document is completed.  
+
+I do not want any paragraph titles or paragraph numbering.  
+
+Here is the original document: 
+
+
+
+
+  But after each original paragraph i want you to list a paragraph which is the translation of that paragraph.  Continue in this fashion for the second paragraph, list the original and the translated.  Then do the same for the third and so on for the entire document. I do not want paragraph numbering.  For translation if it is to Chinese, then always use traditional Chinese character and do no use simplifieid Chinese characters.
+
+After each Chinese paragraph please include the pinyin for that paragraph.
+After each Chinese paragraph describe the grammatical structure and define the difficult words and phrases, such as 成語

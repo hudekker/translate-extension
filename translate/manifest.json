@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "Bilingual Interleave",
+  "version": "1.0",
+  "description": "Selects and interleaves paragraphs.",
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "tabs"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}
