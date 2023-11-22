@@ -1,15 +1,21 @@
 
+chinese translations must use traditional characters (Taiwan) and 口語用法
+
 T
-Display the following document in a format of alternating paragraphs of the original chinese with its english translation.  If the original is English the reverse these instructions.
+  Display the following document in a format of alternating paragraphs of the  chinese with english.  If the original is English the paragraph order is english, chinese translation, english, chinese translation and so on.  Go back and forth, one Chinese paragraph and one English paragraph and so on. If the original is English the reverse these instructions.If the original is Chinese the paragraph order is chinese, english translation, chinese, english translation and so on.
 
 T+Pinyin
 Display the following document in a format of alternating paragraphs of the original chinese with its english translation.  If the original is English the reverse these instructions.
 
 T+G
-display the following document in a format of alternating paragraphs of the original chinese with its english translation.  for each chinese paragraph please list any complex chinese grammar or difficult words
+Display the following document in a format of alternating paragraphs of the  chinese with english.  If the original is English the paragraph order is english, chinese translation, english, chinese translation and so on.  If the original is Chinese the paragraph order is chinese, english translation, chinese, english translation and so on.  For each chinese paragraph please list underneath that paragaph any complex chinese grammar or difficult words found in that paragraph.
+
+Grammar
+for the above, please relist both the chinese and english paragraphs exactly as they are.  one difference here is i want you to add a paragraph under the chinese paragraph listing any complex chinese grammar and difficult chinese phrases.  and remember always use traditional chinese characters.  
 
 
-
+Old
+alternate paragraphs of english and chinese.  one paragraph of english and then one paragraph of chinese. please give a line spacing between paragraphs.  all chinese should be in traditional chinese (taiwan).  if the original is in chinese then the paragraph order should be chinese-english-chinese-english and so on.  if the original is in english then the paragraph order should be english-chinese-english-chinese and so on.
 
 display the following document in a format of alternating paragraphs of the original chinese with its english translation.  for each chinese paragraph if there is complex chinese grammar or difficult vocabulary words please list and explain.
 

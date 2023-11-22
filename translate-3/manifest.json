@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Bilingual Translate",
+  "version": "1.0",
+  "description": "Translate selected text to English",
+  "permissions": [
+    "activeTab",
+    "contextMenus"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "styles.css",
+        "element.js"
+      ],
+      "matches": [
+        "*://*/*"
+      ]
+    }
+  ]
+}
