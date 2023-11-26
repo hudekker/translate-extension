@@ -1,3 +1,6 @@
+const PROXY_PORT = 3500;
+const GOOGLE_PORT = 3000;
+
 // Function to scrape the webpage and display results
 async function scrapeAndDisplay() {
   // Get the URL input value
@@ -15,14 +18,14 @@ async function scrapeAndDisplay() {
 
   try {
     // Fetch the content from the specified URL
-    const url2 = `http://localhost:3000/proxy/${encodeURIComponent(url)}`
-    debugger;
+    const url2 = `http://localhost:${PROXY_PORT}/proxy/${encodeURIComponent(url)}`
+
     // const response = await fetch(
     //   `http://localhost:3000/proxy/${encodeURIComponent(url)}`);
 
 
     const response = await fetch(
-      `http://localhost:3000/proxy/${encodeURIComponent(url)}`,
+      `http://localhost:${PROXY_PORT}/proxy/${encodeURIComponent(url)}`,
       {
         headers: {
           'Authorization': 'yu-guang-dao',
@@ -51,13 +54,47 @@ async function scrapeAndDisplay() {
         const paragraphs = Array.from(article.querySelectorAll('p')).filter(paragraph => {
           const hasOnlyAnchor = paragraph.children.length === 1 && paragraph.children[0].tagName === 'A';
           return !hasOnlyAnchor;
-        });
+        }).filter(el => el.innerText != '');
 
         // Compile paragraphs into a text document with line spaces
         // const compiledText = paragraphs.map(paragraph => paragraph.textContent).join('\n\n');
         // Compile paragraphs into a text document with line breaks
-        const compiledText = paragraphs.map(paragraph => paragraph.outerHTML).join('\n\n');
 
+        // const compiledText = paragraphs.map(paragraph => paragraph.outerHTML).join('\n\n');
+
+        let compiledText = [];
+
+        for (let i = 0; i < paragraphs.length; i++) {
+          const apiUrl = `http://localhost:${GOOGLE_PORT}/translate`
+          const element = paragraphs[i];
+          const data = {
+            text: element.innerText,
+            targetLanguage: 'zh-TW',
+          };
+
+          try {
+
+            const response = await fetch(apiUrl, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(data),
+            });
+
+            const responseData = await response.json();
+
+            compiledText.push(responseData.translatedText)
+            compiledText.push(response.data.translatedText)
+
+          } catch (error) {
+            console.error('Error translating text:', error.message);
+            throw error;
+          }
+        }
+
+
+        compiledText = compiledText.join('\n\n');
 
         // Display the title and compiled text on the page
         resultsContainer.innerHTML = `

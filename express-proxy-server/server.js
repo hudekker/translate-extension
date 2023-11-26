@@ -2,7 +2,7 @@ const express = require('express');
 const rp = require('request-promise-native');
 
 const app = express();
-const PORT = 3000;
+const PROXY_PORT = process.env.PORT || 3500;
 const PROXY_PASSWORD = process.env.PROXY_PASSWORD || 'yu-guang-dao';
 
 
@@ -48,6 +48,6 @@ app.get('/proxy/:url', async function (req, res) {
 });
 
 // Start the Express server
-app.listen(PORT, function () {
-  console.log('Server is running on http://localhost:' + PORT);
+app.listen(PROXY_PORT, function () {
+  console.log('Proxy is running on http://localhost:' + PROXY_PORT);
 });
