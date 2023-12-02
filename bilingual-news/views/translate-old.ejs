@@ -1,5 +1,3 @@
-<!-- translate.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,26 +5,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bilingual News</title>
+  <!-- <script src="script.js" defer></script> -->
   <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="dark-theme">
+<body>
 
   <div id="main-container">
 
-    <h3 class="article-title">
+    <h3 class="<%= translationDirection === 'chineseToEnglish' ? 'chinese-article-title' : 'english-article-title' %>">
       <%- translationDirection==='chineseToEnglish' ? articleTitle.chinese : articleTitle.english %>
     </h3>
-    <h3 class="article-title">
+    <h3 class="<%= translationDirection === 'chineseToEnglish' ? 'english-article-title' : 'chinese-article-title' %>">
       <%- translationDirection==='chineseToEnglish' ? articleTitle.english : articleTitle.chinese %>
     </h3>
 
     <div class="results-container">
       <% bilingualArray.forEach(paragraph=> { %>
-        <p class="paragraph">
+        <p class="<%= translationDirection === 'chineseToEnglish' ? 'chinese-paragraph' : 'english-paragraph' %>">
           <%- translationDirection==='chineseToEnglish' ? paragraph.chinese : paragraph.english %>
         </p>
-        <p class="paragraph">
+        <p class="<%= translationDirection === 'chineseToEnglish' ? 'english-paragraph' : 'chinese-paragraph' %>">
           <%- translationDirection==='chineseToEnglish' ? paragraph.english : paragraph.chinese %>
         </p>
         <% }) %>
