@@ -35,15 +35,33 @@ async function scrapeAndDisplay() {
 
     // Check if the request was successful (status code 200)
     if (response.ok) {
+
       // Parse the HTML content
       const textContent = await response.text();
 
-      // Create a temporary div to parse the HTML
-      const tempDiv = document.createElement('div');
-      tempDiv.innerHTML = textContent;
+      debugger;
 
-      // Find the article tag
-      const article = tempDiv.querySelector('article');
+      // Assuming the 'textContent' variable contains the HTML response
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(textContent, 'text/html');
+
+      // Now you can use querySelector on the 'doc' object
+      const article = doc.querySelector('article');
+
+      // Check if the 'article' element is found
+      // if (articleElement) {
+      //   // Do something with the 'article' element
+      //   console.log(articleElement.innerHTML);
+      // } else {
+      //   console.log('No <article> element found in the HTML response.');
+      // }
+
+      // Create a temporary div to parse the HTML
+      // const tempDiv = document.createElement('div');
+      // tempDiv.innerHTML = textContent;
+
+      // // Find the article tag
+      // const article = tempDiv.querySelector('article');
 
       // Check if the article tag is found
       if (article) {

@@ -5,8 +5,27 @@ body {
   background-color: #f0f0f0;
 }
 
-#results-container {
+#main-container {
   max-width: 800px;
+  /* Adjust to match results-container max-width */
+  margin: 0 auto;
+  margin-top: 30px;
+  /* Center the main container within the max-width */
+}
+
+h2,
+h3 {
+  max-width: 100%;
+  /* Allow titles to take full width within main-container */
+  margin: 20px auto;
+  /* Center the titles within the max-width */
+  padding: 0 20px;
+}
+
+
+.results-container {
+  max-width: 100%;
+  /* Allow results-container to take full width within main-container */
   margin: 0 auto;
   padding: 20px;
   background-color: #fff;
@@ -52,10 +71,71 @@ input {
 
 
 
-#form-container {
+/* #form-container {
   text-align: left;
   margin-top: 20px;
+} */
+
+/* Add these styles to your existing CSS or create a new stylesheet */
+
+/* Add these styles to your existing CSS or create a new stylesheet */
+
+/* Style for the form container */
+#form-container {
+  text-align: center;
+  margin-top: 20px;
+  margin: 0 auto;
 }
+
+/* Style for the radio container */
+.radio-container {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  /* Arrange items in a row */
+  align-items: start;
+  /* Align items vertically in the center */
+}
+
+.url-container {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+/* Style for the radio buttons */
+input[type="radio"] {
+  margin-right: 5px;
+  width: auto;
+}
+
+button[type="submit"] {
+  margin-left: 10px;
+}
+
+
+/* Style for the submit button */
+button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+
+/* Responsive styles for smaller screens */
+
+
 
 #urlInput {
   padding: 10px;

@@ -1,10 +1,17 @@
-// const keyFile = require('/Users/hudekker/hudekker/json-stuff/test1-279603-94eeb6426c7b.json'); // Replace with your service account key file
-// const keyFile = require('/Users/hudekker/hudekker/json-stuff/test1-279603-c1acdaabc170.json'); // Replace with your service account key file
+// Authentication, on terminal do this:
+// gcloud auth application-default login
+
+//For quota there are 2 options, only need to do 1 of them:
+// 1) in the terminal, execute this replacing with your quota project id
+// export GOOGLE_CLOUD_PROJECT=your-quota-project-id
+
+// 2) On nodejs, you can set the quota project in the .env
+// GOOGLE_CLOUD_PROJECT=your-quota-project-id node your-app.js
+
 
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-// const { Translate } = require('@google-cloud/translate');
 const { Translate } = require('@google-cloud/translate').v2;
 
 const originalPayload = {
@@ -12,9 +19,9 @@ const originalPayload = {
   "sourceLanguage": "en",
   "targetLanguage": "zh-TW"
 };
+
 // Encode the JSON object as a query parameter
 const encodedPayload = encodeURIComponent(JSON.stringify(originalPayload));
-const apiUrl = `http://localhost:3000/translate?payload=${encodedPayload}`;
 
 // Set up the Google Cloud Translation API client
 const translate = new Translate({ projectId: 'Test1' });
@@ -22,7 +29,7 @@ const translate = new Translate({ projectId: 'Test1' });
 app.use(bodyParser.json());
 
 // Translation endpoint
-app.get('/translate', async (req, res) => {
+app.post('/translate', async (req, res) => {
   try {
     let { text, sourceLanguage, targetLanguage } = req.body;
 

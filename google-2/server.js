@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const fs = require('fs');
+const { log } = require('console');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -11,10 +12,9 @@ app.use(bodyParser.json());
 app.post('/translate', async (req, res) => {
   try {
     const { text, targetLanguage } = req.body;
-    console.log(text);
-    console.log(targetLanguage);
     const apiKeyFilePath = '/Users/hudekker/hudekker/stuff.txt'; // Replace with the actual path to your API key file
     const apiKey = readApiKeyFromFile(apiKeyFilePath);
+    console.log(apiKey);
 
     const translatedText = await translateText(text, targetLanguage, apiKey);
     res.json({ translatedText });
@@ -26,6 +26,10 @@ app.post('/translate', async (req, res) => {
 
 function translateText(text, targetLanguage, apiKey) {
   const apiUrl = 'https://translation.googleapis.com/language/translate/v2';
+
+  console.log(text);
+  console.log(targetLanguage);
+  console.log(apiKey);
 
   const params = {
     q: text,
