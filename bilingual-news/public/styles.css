@@ -1,8 +1,7 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
 
 :root {
   /* Base Colors */
@@ -33,12 +32,12 @@
 }
 
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f0f0f0;
   background-color: #ffecd9;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   /* A light peachy pastel color */
 }
 
@@ -47,7 +46,19 @@ body.dark-theme {
   /* background-color: var(--dracula-background); */
   color: #f8f8f2;
   /* color: var(--dracula-foreground); */
+}
 
+#messagePopup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f44336;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
 }
 
 #main-container {
@@ -70,7 +81,6 @@ h3 {
   color: #50fa7b;
 }
 
-
 .results-container {
   max-width: 100%;
   /* Allow results-container to take full width within main-container */
@@ -89,7 +99,6 @@ h3 {
   border-radius: 8px;
   /* Add border-radius for rounded corners */
 }
-
 
 button {
   margin-top: 10px;
@@ -124,8 +133,6 @@ input {
   margin-bottom: 10px;
   font-size: 16px;
 }
-
-
 
 /* #form-container {
   text-align: left;
@@ -183,7 +190,6 @@ button[type="submit"] {
   margin-left: 10px;
 }
 
-
 /* Style for the submit button */
 button {
   margin-top: 10px;
@@ -201,10 +207,7 @@ button:hover {
   background-color: #45a049;
 }
 
-
 /* Responsive styles for smaller screens */
-
-
 
 #urlInput {
   padding: 10px;

@@ -1,21 +1,21 @@
 // helperFunctions.js
-const axios = require('axios');
-const { JSDOM } = require('jsdom');
-const path = require('path');
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+const axios = require("axios");
+const { JSDOM } = require("jsdom");
+const path = require("path");
+require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 const apiKey = process.env.TRANSLATE_API;
 let language = {};
 
 const setLanguage = (translationDirection) => {
-  let src = 'en';
-  let tgt = 'zh-TW';
+  let src = "en";
+  let tgt = "zh-TW";
 
   switch (translationDirection) {
-    case 'chineseToEnglish':
-      src = 'zh-TW';
-      tgt = 'en';
+    case "chineseToEnglish":
+      src = "zh-TW";
+      tgt = "en";
       break;
-    case 'englishToChinese':
+    case "englishToChinese":
       // Default values are already set
       break;
     // Add more cases if needed
@@ -34,38 +34,63 @@ const readArticleFromUrl = async (url, tgt) => {
     const bilingualArray = [];
     let articleTitle = {};
 
-    if (tgt == 'en') {
-      language.original = 'chinese';
-      language.target = 'english';
+    if (tgt == "en") {
+      language.original = "chinese";
+      language.target = "english";
     } else {
-      language.original = 'english';
-      language.target = 'chinese';
+      language.original = "english";
+      language.target = "chinese";
     }
 
     if (response.status !== 200) {
-      console.error('Problem with HTTP request or processing');
+      console.error("Problem with HTTP request or processing");
       return;
     }
 
     const dom = new JSDOM(response.data);
-    const article = dom.window.document.querySelector('article');
+    const article = dom.window.document.querySelector("article");
+    let main = dom.window.document.querySelector("main");
 
     if (!article) {
-      console.error('Article element not found.');
+      console.error("Article element not found.");
       return;
     }
 
-    const originalTitle = article.querySelector('h1').textContent;
-    const translatedTitle = await translateText(originalTitle, tgt);
+    let originalTitle = "";
+    let translatedTitle = "";
+
+    originalTitle = article?.querySelector("h1")?.textContent;
+
+    if (originalTitle === undefined) {
+      originalTitle = main?.querySelector("h1")?.textContent;
+    }
+
+    if (originalTitle !== undefined) {
+      translatedTitle = await translateText(originalTitle, tgt);
+    }
+
     articleTitle = { [language.original]: originalTitle, [language.target]: translatedTitle };
 
-    const paragraphs = Array.from(article.querySelectorAll('p')).filter(paragraph => {
-      const hasText = paragraph.textContent.trim().length > 0;
-      const hasOnlyAnchor = paragraph.children.length === 1 && paragraph.children[0].tagName === 'A';
-      return hasText || !hasOnlyAnchor;
-    }).filter(el => el.innerText != '');
+    let pAll;
 
-    const paragraphsText = paragraphs.map(el => el.textContent);
+    if (originalTitle !== undefined) {
+      pAll = Array.from(article.querySelectorAll("p"));
+    } else if (main) {
+      pAll = Array.from(main.querySelectorAll("p"));
+    } else {
+      pAll = Array.from(dom.window.document.querySelectorAll("p"));
+    }
+
+    // const paragraphs = Array.from(article.querySelectorAll("p"))
+    const paragraphs = pAll
+      .filter((paragraph) => {
+        const hasText = paragraph.textContent.trim().length > 0;
+        const hasOnlyAnchor = paragraph.children.length === 1 && paragraph.children[0].tagName === "A";
+        return hasText || !hasOnlyAnchor;
+      })
+      .filter((el) => el.innerText != "");
+
+    const paragraphsText = paragraphs.map((el) => el.textContent);
 
     for (let i = 0; i < paragraphsText.length; i++) {
       const originalText = paragraphsText[i];
@@ -75,16 +100,17 @@ const readArticleFromUrl = async (url, tgt) => {
 
     return { articleTitle, bilingualArray };
   } catch (error) {
-    console.error('Error reading text from URL:', error.message);
+    console.error("Error reading text from URL:", error.message);
     throw error;
   }
 };
 
 const translateText = async (text, tgt) => {
   try {
-    const apiUrl = 'https://translation.googleapis.com/language/translate/v2';
+    const apiUrl = "https://translation.googleapis.com/language/translate/v2";
     const params = {
       q: text,
+      // q: encodeURIComponent(text),
       target: tgt,
       key: apiKey,
     };
@@ -96,7 +122,7 @@ const translateText = async (text, tgt) => {
 
     return translatedText;
   } catch (error) {
-    console.error('Error translating text:', error.message);
+    console.error("Error translating text:", error.message);
     throw error;
   }
 };
