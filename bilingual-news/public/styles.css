@@ -134,8 +134,7 @@ input {
 .article-title {
   font-size: 24px;
   color: #ffb86c;
-  /* color: var(--dracula-orange); */
-  /* Add styles for article titles */
+  color: #50fa7b;
 }
 
 .paragraph {
