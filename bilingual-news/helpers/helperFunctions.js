@@ -65,6 +65,10 @@ const readArticleFromUrl = async (url, tgt) => {
       originalTitle = main?.querySelector("h1")?.textContent;
     }
 
+    if (originalTitle === undefined) {
+      originalTitle = dom.window.document.querySelector("h1")?.textContent;
+    }
+
     if (originalTitle !== undefined) {
       translatedTitle = await translateText(originalTitle, tgt);
     }
@@ -73,7 +77,7 @@ const readArticleFromUrl = async (url, tgt) => {
 
     let pAll;
 
-    if (originalTitle !== undefined) {
+    if (article?.querySelector("h1")?.textContent !== undefined) {
       pAll = Array.from(article.querySelectorAll("p"));
     } else if (main) {
       pAll = Array.from(main.querySelectorAll("p"));
