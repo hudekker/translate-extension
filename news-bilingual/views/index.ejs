@@ -7,6 +7,11 @@
   <title>Bilingual News</title>
   <script src="script-front.js" defer></script>
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon32.png" />
+  <link rel="icon" type="image/png" sizes="180x180" href="/icons/icon180.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/icons/icon512.png" />
 </head>
 
 <body class="dark-theme">
@@ -37,23 +42,17 @@
     </form> -->
     <form action="/read-url" method="post">
       <div id="form-container">
-        <!-- Create a div for each radio button and label pair -->
         <div class="radio-container">
-          <!-- Add the "chineseToEnglish" id to the first radio button -->
           <input type="radio" id="chineseToEnglish" name="translationDirection" value="chineseToEnglish" checked>
-          <!-- Add a label for the first radio button -->
           <label for="chineseToEnglish">Chinese to English</label>
         </div>
 
         <div class="radio-container">
-          <!-- Add the "englishToChinese" id to the second radio button -->
           <input type="radio" id="englishToChinese" name="translationDirection" value="englishToChinese">
-          <!-- Add a label for the second radio button -->
           <label for="englishToChinese">English to Chinese</label>
         </div>
 
         <div class="url-container">
-          <!-- <label for="urlInput">Enter URL:</label> -->
           <input type="text" id="url" name="url" placeholder="https://example.com">
           <button type="submit">Submit</button>
         </div>

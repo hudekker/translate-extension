@@ -1,0 +1,86 @@
+// app.js
+
+// Get the modal and gear icon
+var modal = document.getElementById("font-modal");
+var gearIcon = document.getElementById("gear-icon");
+
+// When the user clicks the gear icon, display the modal
+gearIcon.onclick = function () {
+  modal.style.display = "block";
+};
+
+// When the user clicks on the close button, close the modal
+var closeBtn = document.getElementsByClassName("close")[0];
+closeBtn.onclick = function () {
+  modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target === modal) {
+    modal.style.display = "none";
+  }
+};
+
+// Function to apply the selected font colors
+function applyFontColors() {
+  applyColor('titleColor', 'titleColorDropdown', '.article-title');
+  applyColor('paragraphColor', 'paragraphColorDropdown', '.paragraph');
+
+  // Close the modal
+  modal.style.display = "none";
+}
+
+// Function to apply color to elements
+function applyColor(colorPickerId, dropdownId, elementSelector) {
+  var colorPicker = document.getElementById(colorPickerId);
+  var dropdown = document.getElementById(dropdownId);
+
+  // Get the selected color from either the color picker or the dropdown
+  var selectedColor = (dropdown.selectedIndex !== -1 ? dropdown.options[dropdown.selectedIndex].value : null) || colorPicker.value;
+
+  // Determine the chosen method
+  var chosenMethod = (dropdown.selectedIndex !== -1 ? 'dropdown' : 'colorPicker');
+
+  if (selectedColor) {
+    // Apply the selected color to the relevant elements (modify this based on your structure)
+    var elements = document.querySelectorAll(elementSelector);
+    elements.forEach(function (element) {
+      element.style.color = selectedColor;
+    });
+
+    // Save the selected color and chosen method to local storage
+    localStorage.setItem(colorPickerId, selectedColor);
+    localStorage.setItem(dropdownId, selectedColor);
+    localStorage.setItem(colorPickerId + '_method', chosenMethod);
+  }
+}
+
+// Function to load saved values from local storage
+function loadSavedValues() {
+  // Load saved title color
+  var savedTitleColor = localStorage.getItem('titleColorDropdown');
+  if (savedTitleColor) {
+    document.getElementById('titleColorDropdown').value = savedTitleColor;
+    applyColor('titleColor', 'titleColorDropdown', '.article-title');
+  }
+
+  // Load saved paragraph color
+  var savedParagraphColor = localStorage.getItem('paragraphColorDropdown');
+  if (savedParagraphColor) {
+    document.getElementById('paragraphColorDropdown').value = savedParagraphColor;
+    applyColor('paragraphColor', 'paragraphColorDropdown', '.paragraph');
+  }
+
+  // Load saved chosen method for title color
+  var savedTitleMethod = localStorage.getItem('titleColorDropdown_method') || 'colorPicker';
+  // Add logic to handle the chosen method for the title color as needed
+
+  // Load saved chosen method for paragraph color
+  var savedParagraphMethod = localStorage.getItem('paragraphColorDropdown_method') || 'colorPicker';
+  // Add logic to handle the chosen method for the paragraph color as needed
+}
+
+// Call the function to load saved values on page load
+loadSavedValues();
+

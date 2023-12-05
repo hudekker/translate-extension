@@ -8,6 +8,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bilingual News</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-abc123..." crossorigin="anonymous" />
+
 </head>
 
 <body class="dark-theme">
@@ -33,6 +36,74 @@
     </div>
   </div>
 
+  <!-- Gear icon for the modal -->
+  <!-- <div id="gear-icon" class="gear-icon">&#9881;</div> -->
+  <!-- Gear icon with 2x size -->
+  <div id="gear-icon" class="gear-icon-container" onclick="openSettingsModal()">
+    <i class="fas fa-cog fa-1x"></i>
+  </div>
+
+  <!-- Modal for changing font color -->
+  <div id="font-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+
+      <!-- Title section -->
+      <div class="color-section">
+        <div class="section-header">Choose Title Color:</div>
+        <div class="section-content">
+          <label class="no-display" for="titleColor">Select Title Color:</label>
+          <input class="no-display" type="color" id="titleColor" name="titleColor" value="#000000">
+
+          <label for="titleColorDropdown">Select from predefined colors:</label>
+          <select id="titleColorDropdown">
+            <option value="#f8f8f2">White</option>
+            <option value="#ff79c6">Pink</option>
+            <option value="#bd93f9">Purple</option>
+            <option value="#f1fa8c">Yellow</option>
+            <option value="#50fa7b">Green</option>
+            <option value="#ffb86c">Orange</option>
+            <option value="#8be9fd">Cyan</option>
+            <option value="#ff5555">Red</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Add a border between the sections -->
+      <hr class="section-divider">
+
+      <!-- Paragraph section -->
+      <div class="color-section">
+        <div class="section-header">Choose Paragraph Color:</div>
+        <div class="section-content">
+          <label class="no-display" for="paragraphColor">Select Paragraph Color:</label>
+          <input class="no-display" type="color" id="paragraphColor" name="paragraphColor" value="#000000">
+
+          <label for="paragraphColorDropdown">Select from predefined colors:</label>
+          <select id="paragraphColorDropdown">
+            <option value="#f8f8f2">White</option>
+            <option value="#ff79c6">Pink</option>
+            <option value="#bd93f9">Purple</option>
+            <option value="#f1fa8c">Yellow</option>
+            <option value="#50fa7b">Green</option>
+            <option value="#ffb86c">Orange</option>
+            <option value="#8be9fd">Cyan</option>
+            <option value="#ff5555">Red</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Button to apply colors with the added class -->
+      <button class="btn-modal-apply" onclick="applyFontColors()">Apply</button>
+    </div>
+  </div>
+
+
+
+
+
+
+  <script src="modal.js"></script>
 </body>
 
 </html>

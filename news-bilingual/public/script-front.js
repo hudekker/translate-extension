@@ -1,20 +1,25 @@
+let inputElement = document.getElementById("url");
+
+inputElement.addEventListener("change", function () {
+  let inputValue = inputElement.value;
+  let urlRegex = /https:\/\/(.+)/;
+  let match = inputValue.match(urlRegex);
+
+  if (match) {
+    let extractedURL = match[1]; // Use index 1 to get the matched part after "https://"
+    inputElement.value = "https://" + extractedURL; // Set the corrected URL back to the input element
+    console.log("Corrected URL:", inputElement.value);
+  } else {
+    console.log("Invalid URL format");
+  }
+});
+
+
 document.addEventListener("DOMContentLoaded", function () {
-  let inputElement = document.getElementById("urlInput");
+
   let messagePopup = document.getElementById("messagePopup");
 
-  inputElement.addEventListener("change", function () {
-    let inputValue = inputElement.value;
-    let urlRegex = /https:\/\/(.+)/;
-    let match = inputValue.match(urlRegex);
 
-    if (match) {
-      let extractedURL = match[1];
-      console.log(extractedURL);
-      // You can use extractedURL as needed, for example, update another field or send it to the server.
-    } else {
-      displayMessage("Invalid URL format");
-    }
-  });
 
   function displayMessage(message) {
     messagePopup.innerText = message;
