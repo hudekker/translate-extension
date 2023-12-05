@@ -17,19 +17,19 @@
 
   <div id="main-container">
 
-    <h3 class="article-title">
+    <h3 class="article-title <%= translationDirection === 'chineseToEnglish' ? 'chinese' : 'english' %>">
       <%- translationDirection==='chineseToEnglish' ? articleTitle.chinese : articleTitle.english %>
     </h3>
-    <h3 class="article-title">
+    <h3 class="article-title <%= translationDirection === 'chineseToEnglish' ? 'english' : 'chinese' %>">
       <%- translationDirection==='chineseToEnglish' ? articleTitle.english : articleTitle.chinese %>
     </h3>
 
     <div class="results-container">
       <% bilingualArray.forEach(paragraph=> { %>
-        <p class="paragraph">
+        <p class="p <%= translationDirection === 'chineseToEnglish' ? 'chinese' : 'english' %>">
           <%- translationDirection==='chineseToEnglish' ? paragraph.chinese : paragraph.english %>
         </p>
-        <p class="paragraph">
+        <p class="p <%= translationDirection === 'chineseToEnglish' ? 'english' : 'chinese' %>">
           <%- translationDirection==='chineseToEnglish' ? paragraph.english : paragraph.chinese %>
         </p>
         <% }) %>

@@ -2,15 +2,20 @@ let inputElement = document.getElementById("url");
 
 inputElement.addEventListener("change", function () {
   let inputValue = inputElement.value;
-  let urlRegex = /https:\/\/(.+)/;
-  let match = inputValue.match(urlRegex);
+  // Check if inputValue is not null or undefined
+  if (inputValue != null) {
+    let urlRegex = /https:\/\/(.+)/;
+    let match = inputValue.match(urlRegex);
 
-  if (match) {
-    let extractedURL = match[1]; // Use index 1 to get the matched part after "https://"
-    inputElement.value = "https://" + extractedURL; // Set the corrected URL back to the input element
-    console.log("Corrected URL:", inputElement.value);
+    if (match) {
+      let extractedURL = decodeURIComponent(match[0]);
+      inputElement.value = extractedURL;
+      console.log("Corrected URL:", inputElement.value);
+    } else {
+      console.log("Invalid URL format");
+    }
   } else {
-    console.log("Invalid URL format");
+    console.log("Input is empty");
   }
 });
 

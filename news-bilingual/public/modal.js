@@ -25,7 +25,7 @@ window.onclick = function (event) {
 // Function to apply the selected font colors
 function applyFontColors() {
   applyColor('titleColor', 'titleColorDropdown', '.article-title');
-  applyColor('paragraphColor', 'paragraphColorDropdown', '.paragraph');
+  applyColor('paragraphColor', 'paragraphColorDropdown', '.p');
 
   // Close the modal
   modal.style.display = "none";
