@@ -1,0 +1,34 @@
+<!-- views/index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bilingual News</title>
+  <!-- <script src="script.js" defer></script> -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div id="main-container">
+    <h2>Translate to Bilingual News</h2>
+
+    <div id="form-container">
+      <input type="text" id="urlInput" placeholder="Enter URL">
+      <button id="btn-read-url">Read and Translate</button>
+    </div>
+
+    <button id="btn-copy" onclick="copyToClipboard()">Copy</button>
+    <h3>Results:</h3>
+    <div id="results-outer-container">
+      <div id="results-inner-container">
+        <%- message %>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

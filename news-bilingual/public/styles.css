@@ -1,0 +1,231 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+
+:root {
+  /* Base Colors */
+  --dracula-background: #282a36;
+  --dracula-foreground: #f8f8f2;
+  --dracula-selection: #44475a;
+  --dracula-current-line: #44475a;
+
+  /* Syntax Colors */
+  --dracula-comment: #6272a4;
+  --dracula-cyan: #8be9fd;
+  --dracula-green: #50fa7b;
+  --dracula-orange: #ffb86c;
+  --dracula-pink: #ff79c6;
+  --dracula-purple: #bd93f9;
+  --dracula-red: #ff5555;
+  --dracula-yellow: #f1fa8c;
+
+  /* UI Colors */
+  --dracula-blue: #8be9fd;
+  --dracula-cyan-light: #8be9fd;
+  --dracula-green-light: #50fa7b;
+  --dracula-orange-light: #ffb86c;
+  --dracula-pink-light: #ff79c6;
+  --dracula-purple-light: #bd93f9;
+  --dracula-red-light: #ff6e6e;
+  --dracula-yellow-light: #f1fa8c;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  background-color: #ffecd9;
+  font-family: "Ubuntu", sans-serif;
+  /* A light peachy pastel color */
+}
+
+body.dark-theme {
+  background-color: #282a36;
+  /* background-color: var(--dracula-background); */
+  color: #f8f8f2;
+  /* color: var(--dracula-foreground); */
+}
+
+#messagePopup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f44336;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#main-container {
+  max-width: 800px;
+  /* Adjust to match results-container max-width */
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 0 20px;
+  /* background-color: #282a36; */
+  /* Center the main container within the max-width */
+}
+
+h2,
+h3 {
+  max-width: 100%;
+  /* Allow titles to take full width within main-container */
+  margin: 20px auto;
+  /* Center the titles within the max-width */
+  padding: 0 20px;
+  color: #50fa7b;
+}
+
+.results-container {
+  max-width: 100%;
+  /* Allow results-container to take full width within main-container */
+  margin: 0 auto;
+  padding: 20px;
+  /* background-color: #fff;
+  background-color: #121212; */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 20px;
+
+  background-color: #44475a;
+  /* background-color: var(--dracula-selection); */
+  padding: 15px;
+  /* Add padding for better visibility */
+  border-radius: 8px;
+  /* Add border-radius for rounded corners */
+}
+
+button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* h2 {
+  color: #333;
+} */
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 300px;
+  padding: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* #form-container {
+  text-align: left;
+  margin-top: 20px;
+} */
+.article-title {
+  font-size: 24px;
+  color: #ffb86c;
+  color: #50fa7b;
+}
+
+.paragraph {
+  font-size: 20px;
+  color: #f8f8f2;
+  /* color: var(--dracula-foreground); */
+  /* font-family: 'Kosugi Maru', sans-serif; */
+  /* Add styles for paragraphs */
+}
+
+/* Add these styles to your existing CSS or create a new stylesheet */
+
+/* Add these styles to your existing CSS or create a new stylesheet */
+
+/* Style for the form container */
+#form-container {
+  text-align: center;
+  margin-top: 20px;
+  margin: 0 auto;
+}
+
+/* Style for the radio container */
+.radio-container {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  /* Arrange items in a row */
+  align-items: start;
+  /* Align items vertically in the center */
+}
+
+.url-container {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+/* Style for the radio buttons */
+input[type="radio"] {
+  margin-right: 5px;
+  width: auto;
+}
+
+button[type="submit"] {
+  margin-left: 10px;
+}
+
+/* Style for the submit button */
+button {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Responsive styles for smaller screens */
+
+#urlInput {
+  padding: 10px;
+  margin-right: 10px;
+  width: 300px;
+}
+
+.error-message {
+  color: #d9534f;
+}
+
+.result-text {
+  white-space: pre-line;
+}
+
+/* Responsive styles for smaller screens */
+@media screen and (max-width: 600px) {
+  input {
+    width: 100%;
+  }
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bilingual News</title>
+  <script src="script-front.js" defer></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="dark-theme">
+
+  <div id="main-container">
+    <h2>Translate to Bilingual News</h2>
+
+    <!-- <form action="/read-url" method="post">
+      <div id="form-container">
+        <input type="text" name="url" id="url" placeholder="Enter URL">
+        <button type="submit">Read and Translate</button>
+      </div>
+    </form> -->
+
+
+    <!-- <form action="/read-url" method="post">
+      <label for="urlInput">Enter URL:</label>
+      <input type="text" id="url" name="url" placeholder="https://example.com">
+
+      <label for="translationDirection">Translation Direction:</label>
+      <input type="radio" id="chineseToEnglish" name="translationDirection" value="chineseToEnglish">
+      <label for="chineseToEnglish">Chinese to English</label>
+
+      <input type="radio" id="englishToChinese" name="translationDirection" value="englishToChinese">
+      <label for="englishToChinese">English to Chinese</label>
+
+      <button type="submit">Submit</button>
+    </form> -->
+    <form action="/read-url" method="post">
+      <div id="form-container">
+        <!-- Create a div for each radio button and label pair -->
+        <div class="radio-container">
+          <!-- Add the "chineseToEnglish" id to the first radio button -->
+          <input type="radio" id="chineseToEnglish" name="translationDirection" value="chineseToEnglish" checked>
+          <!-- Add a label for the first radio button -->
+          <label for="chineseToEnglish">Chinese to English</label>
+        </div>
+
+        <div class="radio-container">
+          <!-- Add the "englishToChinese" id to the second radio button -->
+          <input type="radio" id="englishToChinese" name="translationDirection" value="englishToChinese">
+          <!-- Add a label for the second radio button -->
+          <label for="englishToChinese">English to Chinese</label>
+        </div>
+
+        <div class="url-container">
+          <!-- <label for="urlInput">Enter URL:</label> -->
+          <input type="text" id="url" name="url" placeholder="https://example.com">
+          <button type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
+    <!-- <button id="btn-copy" onclick="copyToClipboard()">Copy</button> -->
+
+    <!-- Add the "radio-container" class to the container div -->
+    <div id="messagePopup"></div>
+
+
+  </div>
+
+</body>
+
+</html>

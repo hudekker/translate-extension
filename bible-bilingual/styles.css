@@ -1,0 +1,132 @@
+/* styles.css */
+
+:root {
+  --dracula-background: #282a36;
+  --dracula-foreground: #f8f8f2;
+  --dracula-selection: #44475a;
+  --dracula-current-line: #44475a;
+
+  --dracula-comment: #6272a4;
+  --dracula-cyan: #8be9fd;
+  --dracula-green: #50fa7b;
+  --dracula-orange: #ffb86c;
+  --dracula-pink: #ff79c6;
+  --dracula-purple: #bd93f9;
+  --dracula-red: #ff5555;
+  --dracula-yellow: #f1fa8c;
+
+  --dracula-blue: #8be9fd;
+  --dracula-cyan-light: #8be9fd;
+  --dracula-green-light: #50fa7b;
+  --dracula-orange-light: #ffb86c;
+  --dracula-pink-light: #ff79c6;
+  --dracula-purple-light: #bd93f9;
+  --dracula-red-light: #ff6e6e;
+  --dracula-yellow-light: #f1fa8c;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  background-color: #ffecd9;
+  font-family: "Ubuntu", sans-serif;
+}
+
+body.dark-theme {
+  background-color: #282a36;
+  color: #f8f8f2;
+}
+
+#main-container {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+h2 {
+  /* max-width: 90%; */
+  margin: 20px auto;
+  padding: 0 20px;
+  color: #50fa7b;
+  font-weight: 100;
+}
+
+.results-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 20px;
+  background-color: #44475a;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.results-container p {
+  margin: 0;
+}
+
+.verse-container {
+  margin-bottom: 10px;
+  /* Adjust the margin as needed */
+  /* Add any other styles you want for the verse container */
+}
+
+/* .verse {
+  font-weight: bold;
+} */
+
+.english {
+  color: var(--dracula-foreground);
+  /* Blue color, adjust as needed */
+}
+
+.chinese {
+  color: var(--dracula-green);
+  /* Green color, adjust as needed */
+}
+
+@media screen and (max-width: 800px) {
+  .results-container {
+    padding: 10px;
+    max-width: 90%;
+  }
+
+  h2,
+  h3 {
+    font-size: 20px;
+    max-width: 90%;
+  }
+}
+
+/* Additional styles as needed */
+@media screen and (max-width: 600px) {
+
+  h2,
+  h3 {
+    font-size: 20px;
+    max-width: 90%;
+  }
+
+  .results-container {
+    padding: 10px;
+    max-width: 90%;
+  }
+
+  p.verse {
+    font-size: 16px;
+  }
+
+  p.english {
+    font-size: 18px;
+  }
+
+  p.chinese {
+    font-size: 18px;
+  }
+
+  /* Add more styles as needed for other elements */
+}
