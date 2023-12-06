@@ -97,6 +97,8 @@ const readArticleFromUrl = async (url, tgt) => {
     const paragraphsText = paragraphs.map((el) => el.textContent);
 
     for (let i = 0; i < paragraphsText.length; i++) {
+      if (i === 0 || paragraphsText[i].startsWith('您使用的瀏覽器版本較舊')) continue;
+
       const originalText = paragraphsText[i];
       const translatedText = await translateText(originalText, tgt);
       bilingualArray.push({ [language.original]: originalText, [language.target]: translatedText });

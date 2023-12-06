@@ -89,7 +89,9 @@ h3 {
   margin: 20px auto;
   /* Center the titles within the max-width */
   padding: 0 20px;
-
+  color: #ffb86c;
+  color: #bd93f9;
+  color: #50fa7b;
 }
 
 .results-container {
@@ -110,19 +112,7 @@ h3 {
 
 }
 
-button {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 10px;
-  padding: 10px 20px;
-  background-color: #4caf50;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 4px;
-}
+
 
 button:hover {
   background-color: #0056b3;
@@ -164,12 +154,12 @@ input {
   color: #f8f8f2;
 }
 
-p.english {
+.p.english {
   font-family: 'Roboto', sans-serif;
   font-family: 'Noto Sans', sans-serif;
 }
 
-p.chinese {
+.p.chinese {
   font-family: 'Noto Sans TC', sans-serif;
 }
 
@@ -206,19 +196,29 @@ button[type="submit"] {
 
 /* Style for the submit button */
 button {
+  border: none;
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 10px;
-  background-color: #4caf50;
-  color: #fff;
+  background-color: #ffb86c;
+  color: #f8f8f2;
+  color: #282a36;
   border: none;
   cursor: pointer;
   font-size: 16px;
   border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 button:hover {
   background-color: #45a049;
+  background-color: #e07c36;
+  background-color: #50fa7b;
+  background-color: #ff79c6;
+  /* color: #f8f8f2; */
+  border: 1px solid #fff;
+  /* White border on hover */
 }
 
 /* Gear icon style */
@@ -379,6 +379,23 @@ textarea {
   /* Prevent text wrapping */
 }
 
+.clear-container {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+}
+
+.clear-button {
+  background-color: #6272a4;
+  color: #f8f8f2;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.clear-button:hover {
+  background-color: #44475a;
+  color: #fff;
+  border: 1px solid #fff;
+}
 
 /* Responsive styles for smaller screens */
 @media screen and (max-width: 800px) {

@@ -1,10 +1,43 @@
-document.getElementById("submit2").addEventListener("click", function (event) {
-  // event.preventDefault();
-  console.log(document.getElementById("urlTextarea").value);
-});
-
 let inputElement = document.getElementById("url");
 let urlTextarea = document.getElementById("urlTextarea");
+
+
+document.getElementById("submit-textarea").addEventListener("click", function (event) {
+  debugger;
+  if (urlTextarea.value === '') {
+    event.preventDefault();
+    alert('Please enter a URL')
+    return;
+  }
+});
+
+document.getElementById("deleteButton").addEventListener("click", function (event) {
+  event.preventDefault();
+  // console.log(document.getElementById("urlTextarea").value);
+});
+document.getElementById("clear").addEventListener("click", function (event) {
+  urlTextarea.value = '';
+  event.preventDefault();
+  // console.log(document.getElementById("urlTextarea").value);
+});
+
+
+document.getElementById('deleteButton').addEventListener('click', function () {
+  // Remove an item from local storage
+
+  var titleColorDropdown = localStorage.getItem('titleColorDropdown');
+  var paragraphColorDropdown = localStorage.getItem('paragraphColorDropdown');
+
+  localStorage.removeItem('titleColorDropdown');
+  localStorage.removeItem('paragraphColorDropdown');
+  alert(`deleted titleColorDropdown: ${titleColorDropdown}, paragraphColorDropdown: ${paragraphColorDropdown}`);
+});
+// urlTextarea.addEventListener('paste', (event) => {
+//   const clipboardData = (event.clipboardData || window.clipboardData).getData('text/plain');
+//   debugger;
+//   alert(clipboardData);
+//   event.preventDefault();
+// });
 
 let extractUrl = (textValue) => {
   if (textValue != null) {
@@ -69,11 +102,16 @@ inputElement.addEventListener("change", function () {
 
 
 
-urlTextarea.addEventListener("change", function () {
+urlTextarea.addEventListener("change", function (event) {
 
   urlTextarea.value = extractUrl(urlTextarea.value)
   urlTextarea.value = getLineUrl(urlTextarea.value)
 
+  if (urlTextarea.value === '') {
+    event.preventDefault();
+    alert('Please enter a URL')
+    return;
+  }
 });
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -19,28 +19,6 @@
   <div id="main-container">
     <h2>Translate to Bilingual News</h2>
 
-    <!-- <form action="/read-url" method="post">
-      <div id="form-container">
-        <input type="text" name="url" id="url" placeholder="Enter URL">
-        <button type="submit">Read and Translate</button>
-      </div>
-    </form> -->
-
-
-    <!-- <form action="/read-url" method="post">
-      <label for="urlInput">Enter URL:</label>
-      <input type="text" id="url" name="url" placeholder="https://example.com">
-
-      <label for="translationDirection">Translation Direction:</label>
-      <input type="radio" id="chineseToEnglish" name="translationDirection" value="chineseToEnglish">
-      <label for="chineseToEnglish">Chinese to English</label>
-
-      <input type="radio" id="englishToChinese" name="translationDirection" value="englishToChinese">
-      <label for="englishToChinese">English to Chinese</label>
-
-      <button type="submit">Submit</button>
-    </form> -->
-
     <form action="/read-url" method="post">
       <div id="form-container">
         <div class="radio-container">
@@ -60,7 +38,15 @@
 
         <div class="text-container">
           <textarea id="urlTextarea" name="urlTextarea" placeholder=""></textarea>
-          <button id="submit" type="submit">Submit</button>
+          <button id="submit-textarea" type="submit">Submit</button>
+        </div>
+
+        <div class="no-display clear-container">
+          <button id="deleteButton" class="no-display clear-button">Delete Saved Colors</button>
+        </div>
+
+        <div class="clear-container">
+          <button id="clear" class="clear-button">Clear</button>
         </div>
 
       </div>

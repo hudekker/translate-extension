@@ -60,16 +60,28 @@ function applyColor(colorPickerId, dropdownId, elementSelector) {
 function loadSavedValues() {
   // Load saved title color
   var savedTitleColor = localStorage.getItem('titleColorDropdown');
-  if (savedTitleColor) {
+
+  // Check if there's a saved color; if not, set the default to purple
+  if (!savedTitleColor) {
+    savedTitleColor = '#bd93f9'; // Set your default color here
+    document.getElementById('titleColorDropdown').value = savedTitleColor;
+    applyColor('titleColor', 'titleColorDropdown', '.article-title');
+  } else {
+    // If there's a saved color, set the dropdown value and apply the color
     document.getElementById('titleColorDropdown').value = savedTitleColor;
     applyColor('titleColor', 'titleColorDropdown', '.article-title');
   }
+
+  // if (savedTitleColor) {
+  //   document.getElementById('titleColorDropdown').value = savedTitleColor;
+  //   applyColor('titleColor', 'titleColorDropdown', '.article-title');
+  // }
 
   // Load saved paragraph color
   var savedParagraphColor = localStorage.getItem('paragraphColorDropdown');
   if (savedParagraphColor) {
     document.getElementById('paragraphColorDropdown').value = savedParagraphColor;
-    applyColor('paragraphColor', 'paragraphColorDropdown', '.paragraph');
+    applyColor('paragraphColor', 'paragraphColorDropdown', '.p');
   }
 
   // Load saved chosen method for title color
