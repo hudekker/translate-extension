@@ -5,7 +5,7 @@ const { readArticleFromUrl, translateText, setLanguage } = require('../helpers/h
 
 router.post('/', async (req, res) => {
   try {
-    const { url, translationDirection } = req.body;
+    const { urlTextarea: url, translationDirection } = req.body;
     const { src, tgt } = setLanguage(translationDirection);
 
     const { articleTitle, bilingualArray } = await readArticleFromUrl(url, tgt);

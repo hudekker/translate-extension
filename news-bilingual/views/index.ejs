@@ -40,6 +40,7 @@
 
       <button type="submit">Submit</button>
     </form> -->
+
     <form action="/read-url" method="post">
       <div id="form-container">
         <div class="radio-container">
@@ -52,10 +53,16 @@
           <label for="englishToChinese">English to Chinese</label>
         </div>
 
-        <div class="url-container">
+        <div class="no-display url-container">
           <input type="text" id="url" name="url" placeholder="https://example.com">
           <button type="submit">Submit</button>
         </div>
+
+        <div class="text-container">
+          <textarea id="urlTextarea" name="urlTextarea" placeholder=""></textarea>
+          <button id="submit" type="submit">Submit</button>
+        </div>
+
       </div>
     </form>
     <!-- <button id="btn-copy" onclick="copyToClipboard()">Copy</button> -->

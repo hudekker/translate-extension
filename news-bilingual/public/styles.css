@@ -140,10 +140,6 @@ input {
   font-size: 16px;
 }
 
-/* #form-container {
-  text-align: left;
-  margin-top: 20px;
-} */
 .article-title {
   font-size: 24px;
   color: #ffb86c;
@@ -164,7 +160,7 @@ input {
 
 .p {
   font-size: 20px;
-  font-weight: 100;
+  font-weight: 200;
   color: #f8f8f2;
 }
 
@@ -360,10 +356,32 @@ button.btn-modal-apply:hover {
   /* Icon color */
 }
 
+.text-container {
+  display: flex;
+  align-items: center;
+}
+
+textarea {
+  width: 320px;
+  /* Set the desired width */
+  height: 80px;
+  /* Set the desired height */
+  box-sizing: border-box;
+  resize: none;
+  /* Disable textarea resizing */
+  font-size: 18px;
+  /* Set the desired font size */
+  padding: 6px;
+  /* Adjust padding to center the cursor vertically */
+  overflow-y: hidden;
+  /* Hide overflow vertically */
+  white-space: nowrap;
+  /* Prevent text wrapping */
+}
+
+
 /* Responsive styles for smaller screens */
 @media screen and (max-width: 800px) {
-
-
   .modal-content {
     width: 60%;
   }
@@ -371,6 +389,10 @@ button.btn-modal-apply:hover {
 
 @media screen and (max-width: 600px) {
   input {
+    width: 100%;
+  }
+
+  textarea {
     width: 100%;
   }
 
