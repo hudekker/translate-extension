@@ -6,6 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bilingual News</title>
   <script src="script-front.js" defer></script>
+  <script src="script-front-modal.js" defer></script>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <!-- Font Awesome for the gear icon -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-abc123..." crossorigin="anonymous" />
+
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon16.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon32.png" />
@@ -15,8 +21,12 @@
 </head>
 
 <body class="dark-theme">
+  <!-- Gear icon for the modal -->
+  <div id="gear-icon" class="gear-icon-container" onclick="frontSettings()">
+    <i class="fas fa-cog fa-1x"></i>
+  </div>
 
-  <div id="main-container">
+  <div id="main-container-1">
     <h2>Bilingual News</h2>
 
     <form action="/read-url" method="post">
@@ -56,8 +66,6 @@
 
     <!-- Add the "radio-container" class to the container div -->
     <div id="messagePopup"></div>
-
-
   </div>
 
 </body>

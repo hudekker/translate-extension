@@ -72,22 +72,26 @@ body.dark-theme {
   text-align: center;
 }
 
-#main-container {
-  max-width: 800px;
-  /* Adjust to match results-container max-width */
+#main-container-1 {
+  max-width: 400px;
   margin: 0 auto;
   margin-top: 30px;
   padding: 0 20px;
-  /* background-color: #282a36; */
-  /* Center the main container within the max-width */
 }
+
+#main-container-2 {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 0 20px;
+}
+
+
 
 h2,
 h3 {
   max-width: 100%;
-  /* Allow titles to take full width within main-container */
   margin: 20px auto;
-  /* Center the titles within the max-width */
   padding: 0 20px;
   color: #ffb86c;
   color: #bd93f9;
@@ -392,10 +396,8 @@ button.btn-modal-apply:hover {
 }
 
 .fa-cog {
-  font-size: 2em;
-  /* You can adjust the size as needed */
+  /* font-size: 2em; */
   color: white;
-  /* Icon color */
 }
 
 .text-container {
