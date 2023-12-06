@@ -173,8 +173,8 @@ input {
 .radio-container {
   margin-bottom: 10px;
   display: flex;
-  flex-direction: row;
-  align-items: start;
+  /* flex-direction: row; */
+  align-items: center;
 }
 
 .url-container {
@@ -188,10 +188,6 @@ input {
 input[type="radio"] {
   margin-right: 5px;
   width: auto;
-}
-
-button[type="submit"] {
-  margin-left: 10px;
 }
 
 /* Style for the submit button */
@@ -213,12 +209,59 @@ button {
 
 button:hover {
   background-color: #45a049;
-  background-color: #e07c36;
   background-color: #50fa7b;
   background-color: #ff79c6;
+  background-color: #e07c36;
   /* color: #f8f8f2; */
   border: 1px solid #fff;
-  /* White border on hover */
+}
+
+.btn-clear {
+  background-color: #6272a4;
+  color: #f8f8f2;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-clear:hover {
+  background-color: #44475a;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.btn-paste {
+  background-color: #6272a4;
+  background-color: #ffb86c;
+  color: #44475a;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-paste:hover {
+  background-color: #44475a;
+  background-color: #ffb86c;
+  background-color: #e07c36;
+  color: #f8f8f2;
+  border: 1px solid #fff;
+}
+
+.btn-submit {
+  background-color: #4ae06c;
+  color: #44475a;
+}
+
+.btn-submit:hover {
+  background-color: #36a450;
+  color: #f8f8f2;
+  border: 1px solid #fff;
+}
+
+.btn-container {
+  max-width: 320px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-container>button {
+  width: 80px;
 }
 
 /* Gear icon style */
@@ -278,7 +321,7 @@ select {
   color: #f8f8f2;
 }
 
-/* Button style */
+/* Modal style */
 button.btn-modal-apply {
   background-color: #50fa7b;
   color: #282a36;
@@ -291,7 +334,6 @@ button.btn-modal-apply {
 button.btn-modal-apply:hover {
   background-color: #4ae06c;
 }
-
 
 /* Section style */
 .color-section {
@@ -379,39 +421,49 @@ textarea {
   /* Prevent text wrapping */
 }
 
-.clear-container {
+.delete-container {
   display: flex;
   flex-direction: row;
   align-items: start;
 }
 
-.clear-button {
-  background-color: #6272a4;
-  color: #f8f8f2;
-  transition: background-color 0.3s, color 0.3s;
+/* Reset styles for list items and remove default list styling */
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.clear-button:hover {
-  background-color: #44475a;
-  color: #fff;
-  border: 1px solid #fff;
+/* Ensure the icons are styled correctly */
+.icon-container {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  /* margin-top: 10px; */
+  /* Adjust the spacing as needed */
+  cursor: pointer;
+}
+
+.lang-icon {
+  margin-bottom: 20px;
 }
 
 /* Responsive styles for smaller screens */
-@media screen and (max-width: 800px) {
+/* @media screen and (max-width: 800px) {
   .modal-content {
     width: 60%;
   }
-}
+} */
 
 @media screen and (max-width: 600px) {
   input {
     width: 100%;
   }
 
-  textarea {
-    width: 100%;
-  }
+  /* textarea {
+    max-width: 100%;
+  } */
 
   .modal-content {
     width: 80%;

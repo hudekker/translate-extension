@@ -42,6 +42,26 @@
   <div id="gear-icon" class="gear-icon-container" onclick="openSettingsModal()">
     <i class="fas fa-cog fa-1x"></i>
   </div>
+  <!-- Chinese (中) icon -->
+  <div class="icon-container">
+    <div class="lang-icon" onclick="changeLanguage('chinese')">
+      <i class="fas fa-language2 fa-1x">中</i> <!-- You can customize the size and style here -->
+    </div>
+    <div class="lang-icon" onclick="changeLanguage('english')">
+      <i class="fas fa-language2 fa-1x">英</i>
+    </div>
+    <div class="lang-icon" onclick="changeLanguage('bilingual')">
+      <i class="fas fa-language2 fa-1x">雙</i>
+    </div>
+    <div class="copy-icon" onclick="copyToClipboard()">
+      <i class="fas fa-copy fa-1x"></i>
+    </div>
+  </div>
+
+  <!-- English (英) icon -->
+
+  <!-- Bilingual (雙) icon -->
+
 
   <!-- Modal for changing font color -->
   <div id="font-modal" class="modal">
@@ -98,12 +118,8 @@
     </div>
   </div>
 
-
-
-
-
-
   <script src="modal.js"></script>
+  <script src="script-trans.js"></script>
 </body>
 
 </html>

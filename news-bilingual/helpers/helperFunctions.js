@@ -28,7 +28,7 @@ const setLanguage = (translationDirection) => {
   return { src, tgt };
 };
 
-const readArticleFromUrl = async (url, tgt) => {
+const readArticleFromUrl = async (url, src, tgt) => {
   try {
     const response = await axios.get(url);
     const bilingualArray = [];
@@ -70,7 +70,7 @@ const readArticleFromUrl = async (url, tgt) => {
     }
 
     if (originalTitle !== undefined) {
-      translatedTitle = await translateText(originalTitle, tgt);
+      translatedTitle = await translateText(originalTitle, src, tgt);
     }
 
     articleTitle = { [language.original]: originalTitle, [language.target]: translatedTitle };
@@ -100,7 +100,7 @@ const readArticleFromUrl = async (url, tgt) => {
       if (i === 0 || paragraphsText[i].startsWith('您使用的瀏覽器版本較舊')) continue;
 
       const originalText = paragraphsText[i];
-      const translatedText = await translateText(originalText, tgt);
+      const translatedText = await translateText(originalText, src, tgt);
       bilingualArray.push({ [language.original]: originalText, [language.target]: translatedText });
     }
 
@@ -111,12 +111,13 @@ const readArticleFromUrl = async (url, tgt) => {
   }
 };
 
-const translateText = async (text, tgt) => {
+const translateText = async (text, src, tgt) => {
   try {
     const apiUrl = "https://translation.googleapis.com/language/translate/v2";
     const params = {
       q: text,
       // q: encodeURIComponent(text),
+      source: src,
       target: tgt,
       key: apiKey,
     };

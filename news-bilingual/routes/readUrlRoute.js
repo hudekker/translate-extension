@@ -8,7 +8,9 @@ router.post('/', async (req, res) => {
     const { urlTextarea: url, translationDirection } = req.body;
     const { src, tgt } = setLanguage(translationDirection);
 
-    const { articleTitle, bilingualArray } = await readArticleFromUrl(url, tgt);
+    debugger;
+
+    const { articleTitle, bilingualArray } = await readArticleFromUrl(url, src, tgt);
 
     if (!articleTitle) {
       console.error('Failed to retrieve article title.');

@@ -17,7 +17,7 @@
 <body class="dark-theme">
 
   <div id="main-container">
-    <h2>Translate to Bilingual News</h2>
+    <h2>Bilingual News</h2>
 
     <form action="/read-url" method="post">
       <div id="form-container">
@@ -38,15 +38,16 @@
 
         <div class="text-container">
           <textarea id="urlTextarea" name="urlTextarea" placeholder=""></textarea>
-          <button id="submit-textarea" type="submit">Submit</button>
         </div>
 
-        <div class="no-display clear-container">
-          <button id="deleteButton" class="no-display clear-button">Delete Saved Colors</button>
+        <div class="no-display delete-container">
+          <button id="btn-delete" class="no-display btn-delete" type="button">Delete Saved Colors</button>
         </div>
 
-        <div class="clear-container">
-          <button id="clear" class="clear-button">Clear</button>
+        <div class="btn-container">
+          <button id="btn-clear" class="btn-clear" type="button">Clear</button>
+          <button id="btn-paste" class="btn-paste" type="button">Paste</button>
+          <button id="btn-submit" class="btn-submit" type="submit">Go!</button>
         </div>
 
       </div>
