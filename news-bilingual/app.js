@@ -14,6 +14,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 // dotenv
+// Dev and Prod handled differently in .env for baseUrl
 require("dotenv").config({ path: join(__dirname, "./.env") });
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
@@ -23,13 +24,13 @@ if (!clientId || !clientSecret) {
   process.exit(1);
 }
 
-// Choose the appropriate base URL based on the environment
+// Dev and Prod handled differently in .env for baseUrl
 const baseURL = process.env.NODE_ENV === 'production'
   ? process.env.PROD_BASE_URL
   : process.env.DEV_BASE_URL;
 
 // Approved credentials
-const approvedEmails = ['ntnurobert@gmail.com', 'hudektech@gmail.com'];
+const approvedEmails = ['ntnurobert@gmail.com', 'hudektech@gmail.com', 'hudekker@gmail.com'];
 const readUrlRoute = require('./routes/readUrlRoute.js');
 
 //Initialize passport
@@ -144,8 +145,7 @@ app.get('/unauthorized', (req, res) => {
   res.render('unauthorized');
 });
 
-
-
+///////////////////////////////////////////////////
 // Configure Multer for handling file uploads
 const storage = multer.diskStorage({
   destination: 'public/uploads/',
@@ -158,15 +158,12 @@ const upload = multer({ storage: storage });
 
 // Handle POST request for image upload
 app.post('/upload-image', upload.single('image'), (req, res) => {
-  // const myBaseUrl = '/Users/hudekker/myPortfolio/collection/translate-extension/news-bilingual'
-  // Process the uploaded image (you can save it to a folder, a database, etc.)
   const imageUrl = `/uploads/${req.file.filename}`;
   res.json({ success: true, imageUrl });
 });
-
+////////////////////////////////////////////////////
 
 // Start the server
-
 app.listen(port, () => {
   console.log(`API server is running at http://localhost:${port}`);
 }).on('error', (err) => {

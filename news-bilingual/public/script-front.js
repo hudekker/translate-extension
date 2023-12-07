@@ -24,65 +24,6 @@ console.log(isMobileDevice());
 // }
 
 
-btnDelete.addEventListener('click', function () {
-  var titleColorDropdown = localStorage.getItem('titleColorDropdown');
-  var paragraphColorDropdown = localStorage.getItem('paragraphColorDropdown');
-
-  localStorage.removeItem('titleColorDropdown');
-  localStorage.removeItem('paragraphColorDropdown');
-
-  alert(`deleted titleColorDropdown: ${titleColorDropdown}, paragraphColorDropdown: ${paragraphColorDropdown}`);
-});
-
-btnClear.addEventListener("click", function (event) {
-  urlTextarea.value = '';
-  event.preventDefault();
-});
-
-btnPaste.addEventListener("click", async function (event) {
-  // debugger;
-  // urlTextarea.focus();
-  // const clipboardText = event.clipboardData.getData('text/plain');
-  // urlTextarea.value = clipboardText.trim();
-
-  try {
-    debugger;
-    const clipboardText = await navigator.clipboard.readText();
-    urlTextarea.value = clipboardText.trim();
-    urlTextarea.value = extractUrl(urlTextarea.value)
-    urlTextarea.value = getLineUrl(urlTextarea.value)
-
-    const checkUrlContainsHttps = (urlValue) => urlValue.includes("https://");
-    const isValidUrl = checkUrlContainsHttps(urlTextarea.value);
-
-    if (!isValidUrl) {
-      throw new Error("Invalid URL");
-    }
-
-  } catch (error) {
-    console.error('Error:', error.message);
-  }
-
-});
-
-
-
-btnSubmit.addEventListener("click", function (event) {
-
-  if (urlTextarea.value === '') {
-    event.preventDefault();
-    alert('Please enter a URL')
-    return;
-  }
-});
-
-// urlTextarea.addEventListener('paste', (event) => {
-//   const clipboardData = (event.clipboardData || window.clipboardData).getData('text/plain');
-//   debugger;
-//   alert(clipboardData);
-//   event.preventDefault();
-// });
-
 let extractUrl = (textValue) => {
   if (textValue != null) {
     let urlRegex = /https:\/\/(.+)/;
@@ -115,53 +56,6 @@ let getLineUrl = (url) => {
   }
 }
 
-inputElement.addEventListener("change", function () {
-  let inputValue = inputElement.value;
-
-  if (inputValue != null) {
-    let urlRegex = /https:\/\/(.+)/;
-    let match = inputValue.match(urlRegex);
-
-    if (match) {
-      let extractedURL = decodeURIComponent(match[0]);
-      inputElement.value = extractedURL;
-      console.log("Corrected URL:", inputElement.value);
-    } else {
-      console.log("Invalid URL format");
-    }
-  } else {
-    console.log("Input is empty");
-  }
-});
-
-urlTextarea.addEventListener("change", function (event) {
-
-  urlTextarea.value = extractUrl(urlTextarea.value)
-  urlTextarea.value = getLineUrl(urlTextarea.value)
-
-  if (urlTextarea.value === '') {
-    event.preventDefault();
-    alert('Please enter a URL')
-    return;
-  }
-});
-
-// not implemented yet
-document.addEventListener("DOMContentLoaded", function () {
-
-  let messagePopup = document.getElementById("messagePopup");
-
-  function displayMessage(message) {
-    messagePopup.innerText = message;
-    messagePopup.style.display = "block";
-
-    // Hide the message after 3 seconds (adjust as needed)
-    setTimeout(function () {
-      messagePopup.style.display = "none";
-    }, 3000);
-  }
-});
-
 // Get the radio buttons
 const radioButtons = document.querySelectorAll('input[name="translationDirection"]');
 
@@ -183,7 +77,102 @@ radioButtons.forEach((radioButton) => {
   });
 });
 
-// change themes
+
+// Add event listeners
+inputElement.addEventListener("change", function () {
+  let inputValue = inputElement.value;
+
+  if (inputValue != null) {
+    let urlRegex = /https:\/\/(.+)/;
+    let match = inputValue.match(urlRegex);
+
+    if (match) {
+      let extractedURL = decodeURIComponent(match[0]);
+      inputElement.value = extractedURL;
+      console.log("Corrected URL:", inputElement.value);
+    } else {
+      console.log("Invalid URL format");
+    }
+  } else {
+    console.log("Input is empty");
+  }
+});
+
+urlTextarea.addEventListener("change", function (event) {
+  urlTextarea.value = extractUrl(urlTextarea.value)
+  urlTextarea.value = getLineUrl(urlTextarea.value)
+
+  if (urlTextarea.value === '') {
+    event.preventDefault();
+    alert('Please enter a URL')
+    return;
+  }
+});
+
+btnDelete.addEventListener('click', function () {
+  var titleColorDropdown = localStorage.getItem('titleColorDropdown');
+  var paragraphColorDropdown = localStorage.getItem('paragraphColorDropdown');
+
+  localStorage.removeItem('titleColorDropdown');
+  localStorage.removeItem('paragraphColorDropdown');
+
+  alert(`deleted titleColorDropdown: ${titleColorDropdown}, paragraphColorDropdown: ${paragraphColorDropdown}`);
+});
+
+btnClear.addEventListener("click", function (event) {
+  urlTextarea.value = '';
+  event.preventDefault();
+});
+
+btnPaste.addEventListener("click", async function (event) {
+  try {
+    debugger;
+    const clipboardText = await navigator.clipboard.readText();
+    urlTextarea.value = clipboardText.trim();
+    urlTextarea.value = extractUrl(urlTextarea.value)
+    urlTextarea.value = getLineUrl(urlTextarea.value)
+
+    const checkUrlContainsHttps = (urlValue) => urlValue.includes("https://");
+    const isValidUrl = checkUrlContainsHttps(urlTextarea.value);
+
+    if (!isValidUrl) {
+      throw new Error("Invalid URL");
+    }
+
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+
+});
+
+btnSubmit.addEventListener("click", function (event) {
+  if (urlTextarea.value === '') {
+    event.preventDefault();
+    alert('Please enter a URL')
+    return;
+  }
+});
+
+/////////////////////////////////////////////////////
+// Not implemented yet
+document.addEventListener("DOMContentLoaded", function () {
+
+  let messagePopup = document.getElementById("messagePopup");
+
+  function displayMessage(message) {
+    messagePopup.innerText = message;
+    messagePopup.style.display = "block";
+
+    // Hide the message after 3 seconds (adjust as needed)
+    setTimeout(function () {
+      messagePopup.style.display = "none";
+    }, 3000);
+  }
+});
+
+
+///////////////////////////////////////////////////////
+// Not used
 const backgrounds = ['front-1.png', 'front-2.png', 'front-3.png', 'front-4.png', 'front-5.png', 'front-6.png', 'front-7.png', 'front-8.png', 'front-9.png', 'front-10.png', 'front-11.png', 'front-12.png', 'front-13.png', 'front-14.png', 'front-15.png', 'front-16.png'];
 let currentBackgroundIndex = 0;
 
@@ -193,7 +182,7 @@ function changeBackground() {
 }
 
 // Initial background change
-changeBackground();
+// changeBackground();
 
 // Set interval to change background every 5 seconds
 // setInterval(changeBackground, 8000);

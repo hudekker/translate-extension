@@ -10,17 +10,8 @@ function closeSettingsModal() {
 
 // Function to handle logout
 function logout() {
-  // Add any additional logout logic here (e.g., redirecting to the logout route)
   window.location.href = '/logout';
 }
-
-// Close the modal when clicking outside of it
-window.onclick = function (event) {
-  var modal = document.getElementById('settings-modal');
-  if (event.target === modal) {
-    closeSettingsModal();
-  }
-};
 
 function handleImageInputChange() {
   const fileInput = document.getElementById('imageInput');
@@ -70,13 +61,6 @@ function handleRadioChange() {
   }
 }
 
-// Add event listeners
-document.getElementById('uploadOption').addEventListener('change', handleRadioChange);
-document.getElementById('urlOption').addEventListener('change', handleRadioChange);
-
-document.getElementById('imageInput').addEventListener('change', handleImageInputChange);
-document.getElementById('imageUrl').addEventListener('input', handleUrlInputChange);
-
 function applyBackground() {
   const uploadOption = document.getElementById('uploadOption');
   const backgroundPreviewUpload = document.getElementById('backgroundPreview');
@@ -92,10 +76,6 @@ function applyBackground() {
   // Save preferences to local storage
   savePreferences();
 }
-
-document.getElementById('imageInput').addEventListener('change', handleImageInputChange);
-document.getElementById('imageUrl').addEventListener('input', handleImageInputChange);
-
 
 function updatePreview() {
   var uploadOption = document.getElementById("uploadOption");
@@ -119,39 +99,17 @@ function updatePreview() {
 
 // Save values to local storage
 function savePreferences() {
-  // Determine the selected background option
   const backgroundOption = document.getElementById('uploadOption').checked ? 'upload' : 'url';
-
-  // Determine the background image based on the selected option
-  // const backgroundImage = backgroundOption === 'upload' ?
-  //   document.getElementById('backgroundPreview').src :
-  //   document.getElementById('imageUrl').value;
-
   const backgroundImage = document.getElementById('backgroundPreview').src
   const backgroundUrl = document.getElementById('imageUrl').value;
 
   localStorage.setItem('backgroundOption', backgroundOption);
   localStorage.setItem('backgroundImage', backgroundImage);
   localStorage.setItem('backgroundUrl', backgroundUrl);
-
-  // Save the chosen file (if any)
-  // if (backgroundOption === 'upload') {
-  //   const fileInput = document.getElementById('imageInput');
-  //   const chosenFile = fileInput.files.length > 0 ? fileInput.files[0] : null;
-
-  //   if (chosenFile) {
-  //     const reader = new FileReader();
-  //     reader.onload = function (e) {
-  //       localStorage.setItem('chosenFile', e.target.result);
-  //     };
-  //     reader.readAsDataURL(chosenFile);
-  //   }
-  // }
 }
 
 // Load values from local storage
 function loadPreferences() {
-
   // Retrieve background option, value, and file from localStorage
   const backgroundOption = localStorage.getItem('backgroundOption');
   const backgroundImage = localStorage.getItem('backgroundImage');
@@ -169,17 +127,6 @@ function loadPreferences() {
   document.getElementById('imageUrl').value = backgroundUrl;
 }
 
-document.addEventListener('DOMContentLoaded', function () {
-  // Create and set the placeholder image for upload and URL previews
-  const blackPlaceholder = createBlackPlaceholderImage();
-  document.getElementById('backgroundPreview').src = blackPlaceholder;
-  document.getElementById('urlBackgroundPreview').src = blackPlaceholder;
-
-  loadPreferences();
-  applyBackground();
-  handleRadioChange();
-});
-
 // Function to create a black placeholder image
 function createBlackPlaceholderImage() {
   const canvas = document.createElement('canvas');
@@ -191,6 +138,35 @@ function createBlackPlaceholderImage() {
 
   return canvas.toDataURL();
 }
+
+// Add event listeners
+// Close the modal when clicking outside of it
+window.onclick = function (event) {
+  var modal = document.getElementById('settings-modal');
+  if (event.target === modal) {
+    closeSettingsModal();
+  }
+};
+
+document.getElementById('uploadOption').addEventListener('change', handleRadioChange);
+document.getElementById('urlOption').addEventListener('change', handleRadioChange);
+
+document.getElementById('imageInput').addEventListener('change', handleImageInputChange);
+document.getElementById('imageUrl').addEventListener('input', handleUrlInputChange);
+
+document.getElementById('imageInput').addEventListener('change', handleImageInputChange);
+document.getElementById('imageUrl').addEventListener('input', handleImageInputChange);
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Create and set the placeholder image for upload and URL previews
+  const blackPlaceholder = createBlackPlaceholderImage();
+  document.getElementById('backgroundPreview').src = blackPlaceholder;
+  document.getElementById('urlBackgroundPreview').src = blackPlaceholder;
+
+  loadPreferences();
+  applyBackground();
+  handleRadioChange();
+});
 
 document.getElementById('backgroundPreview').addEventListener('click', function () {
   document.getElementById('uploadOption').checked = true;
