@@ -296,11 +296,13 @@ button:hover {
 
 .btn-logout {
   margin-top: 16px;
+  margin-bottom: 0;
   background-color: #e74c3c;
 }
 
 .btn-logout:hover {
   background-color: #c0392b;
+  color: white;
 }
 
 .btn-container {
@@ -358,6 +360,7 @@ button:hover {
 .modal-content.front {
   display: flex;
   flex-direction: column;
+  margin: 10% auto;
 }
 
 .input-background-picture {
@@ -368,16 +371,20 @@ button:hover {
 #imageInput,
 #imageUrl {
   margin-bottom: 20px;
+  width: auto;
 }
 
 .img-sel-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .img-preview {
   max-width: 180px;
+  max-height: 180px;
   margin: 10px;
+  object-fit: cover;
 }
 
 /* No left margin for the first image */
@@ -392,6 +399,7 @@ button:hover {
 
 .img-preview-container {
   display: flex;
+  justify-content: space-between;
 }
 
 /* Close button style */
@@ -490,7 +498,7 @@ button.btn-modal-apply:hover {
   /* Adjust the top positioning as needed */
   right: 20px;
   /* Adjust the right positioning as needed */
-  z-index: 1000;
+  /* z-index: 1000; */
   /* Ensure it's above other elements */
 }
 
@@ -551,6 +559,14 @@ li {
   margin-bottom: 20px;
 }
 
+.copy-icon {
+  margin-bottom: 20px;
+}
+
+.star-icon {
+  margin-bottom: 20px;
+}
+
 /* Add this style for the tooltip */
 .tooltip {
   display: none;
@@ -578,6 +594,17 @@ li {
   /* textarea {
     max-width: 100%;
   } */
+  .img-preview {
+    max-width: 150px;
+    max-height: 150px;
+    margin: 5px;
+  }
+
+  #urlInput {
+    padding: 5px;
+    margin-right: 5px;
+    width: 250px;
+  }
 
   .modal-content {
     width: 80%;

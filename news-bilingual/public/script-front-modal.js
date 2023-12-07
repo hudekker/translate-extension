@@ -180,6 +180,19 @@ document.getElementById('urlBackgroundPreview').addEventListener('click', functi
   applyBackground();
 });
 
+// Close the modal when clicking outside of it (including touch events)
+function closeOnOutsideClick(event) {
+  var modal = document.getElementById('settings-modal');
+  if (event.target === modal) {
+    closeSettingsModal();
+  }
+}
+
+// Attach both click and touch events to close the modal on outside click
+window.addEventListener('click', closeOnOutsideClick);
+window.addEventListener('touchend', closeOnOutsideClick);
+
+
 /////////////////////// Not used ///////////////
 // Add this JavaScript code
 function uploadServerImage() {

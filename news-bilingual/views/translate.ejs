@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bilingual News</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-trans.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     integrity="sha512-abc123..." crossorigin="anonymous" />
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon16.png" />
@@ -63,11 +64,59 @@
     <div class="copy-icon" onclick="copyToClipboard()">
       <i class="fas fa-copy fa-1x"></i>
     </div>
+
+    <div class="star-icon" onclick="openStarModal()">
+      <i class="fas fa-star fa-1x"></i>
+    </div>
   </div>
 
-  <!-- English (英) icon -->
 
-  <!-- Bilingual (雙) icon -->
+
+  <!-- Modal for the star icon -->
+  <div id="star-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeStarModalButton">&times;</span>
+      <!-- Text lines with radio buttons -->
+      <div class="text-lines-section">
+        <div class="section-header">Prepended Text Line:</div>
+        <div class="section-content">
+          <!-- Line Group 1 -->
+          <div class="line-group">
+            <input type="radio" id="line1" name="textLines" value="Line 1">
+            <textarea id="line1TextArea" class="text-line-textarea"></textarea>
+          </div>
+
+          <!-- Line Group 2 -->
+          <div class="line-group">
+            <input type="radio" id="line2" name="textLines" value="Line 2">
+            <textarea id="line2TextArea" class="text-line-textarea"></textarea>
+          </div>
+
+          <!-- Line Group 3 -->
+          <div class="line-group">
+            <input type="radio" id="line3" name="textLines" value="Line 3">
+            <textarea id="line3TextArea" class="text-line-textarea"></textarea>
+          </div>
+
+          <!-- Line Group 4 -->
+          <div class="line-group">
+            <input type="radio" id="line4" name="textLines" value="Line 4">
+            <textarea id="line4TextArea" class="text-line-textarea"></textarea>
+          </div>
+
+          <!-- Line Group 5 -->
+          <div class="line-group">
+            <input type="radio" id="line5" name="textLines" value="Line 5">
+            <textarea id="line5TextArea" class="text-line-textarea"></textarea>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Copy button -->
+      <button class="btn-modal-apply" onclick="copyStarModal()">Copy Document with Prepended Text</button>
+    </div>
+  </div>
 
 
   <!-- Modal for changing font color -->
@@ -127,6 +176,7 @@
 
   <script src="script-trans-modal.js"></script>
   <script src="script-trans.js"></script>
+  <script src="script-trans-star.js"></script>
 </body>
 
 </html>

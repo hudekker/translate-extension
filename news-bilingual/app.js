@@ -56,6 +56,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 app.use(express.static('public'));
 
+app.use((req, res, next) => {
+  res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+  res.header('Expires', '-1');
+  res.header('Pragma', 'no-cache');
+  next();
+});
+
 // Endpoint to serve the EJS template
 // app.get('/', (req, res) => {
 //   res.render('index', { message: 'hi' });

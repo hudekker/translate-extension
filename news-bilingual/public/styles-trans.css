@@ -1,0 +1,13 @@
+/* Add styles for the star icon */
+.star-icon {
+  cursor: pointer;
+}
+
+/* Add styles for the star icon modal */
+#star-modal {
+  display: none;
+}
+
+.line-group {
+  display: flex;
+}

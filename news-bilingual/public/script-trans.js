@@ -50,8 +50,14 @@ const changeLanguage = selectedLanguage => {
 //     });
 // };
 
-const copyToClipboard = () => {
-  let displayedContent = '';
+const copyToClipboard = (prependText = false, textareaValue = '') => {
+  // Format the selected text with two line breaks if needed
+  const formattedSelectedText = prependText ? textareaValue + '\n\n' : '';
+
+  // Initialize displayed content with the formatted selected text
+  let displayedContent = formattedSelectedText;
+
+  // Append other content to displayed content
   document.querySelectorAll('.p:not(.no-display), .article-title:not(.no-display)').forEach(element => {
     displayedContent += element.textContent.trim() + '\n\n';
   });
@@ -74,4 +80,6 @@ const copyToClipboard = () => {
       console.error('Unable to copy to clipboard', error);
     });
 };
+
+
 
