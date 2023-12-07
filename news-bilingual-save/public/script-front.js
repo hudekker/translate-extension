@@ -198,3 +198,36 @@ changeBackground();
 // Set interval to change background every 5 seconds
 // setInterval(changeBackground, 8000);
 
+
+// Add this JavaScript code
+function uploadImage() {
+  var fileInput = document.getElementById('imageInput');
+  var file = fileInput.files[0];
+
+  if (file) {
+    var formData = new FormData();
+    formData.append('image', file);
+
+    console.log(`sending file ${file} to server`);
+    // Send the image to the server using fetch or XMLHttpRequest
+    fetch('/upload-image', {
+      method: 'POST',
+      body: formData,
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          console.log('Image uploaded successfully!');
+          console.log(`${data.imageUrl}`);
+          // Optionally, update the background image on the front end
+          document.body.style.backgroundImage = `url(${data.imageUrl})`;
+        } else {
+          console.log('Error uploading image.');
+        }
+      })
+      .catch(error => console.error('Error:', error));
+  } else {
+    alert('Please select an image to upload.');
+  }
+}
+

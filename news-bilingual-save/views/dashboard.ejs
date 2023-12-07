@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <!-- Add your CSS styles or link to external stylesheets here -->
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to the Dashboard, <%= user.displayName %>
+    </h1>
+  </header>
+
+  <section>
+    <h2>User Information:</h2>
+    <ul>
+      <li><strong>ID:</strong>
+        <%= user.id %>
+      </li>
+      <li><strong>Email:</strong>
+        <%= user._json.email %>
+      </li>
+      <!-- Add more user information as needed -->
+      <!-- Link to the root route -->
+      <a href="/">Go to the App</a>
+    </ul>
+  </section>
+
+  <!-- Add more sections and content as needed for your dashboard -->
+
+  <footer>
+    <p>Logout <a href="/logout">here</a>.</p>
+  </footer>
+
+  <!-- Add your JavaScript scripts or link to external scripts here -->
+</body>
+
+</html>

@@ -48,10 +48,7 @@
         </div>
 
         <div class="text-container">
-          <textarea id="urlTextarea" name="urlTextarea"
-            placeholder="Enter the URL (e.g., https://example.com/news)"></textarea>
-          <!-- <input type="text" id="url" name="url" placeholder="Enter the URL  (e.g., https://example.com/news)"> -->
-
+          <textarea id="urlTextarea" name="urlTextarea" placeholder=""></textarea>
         </div>
 
         <div class="no-display delete-container">
@@ -67,39 +64,14 @@
       </div>
     </form>
 
-    <!-- Modal -->
+    <!-- Add this to your HTML form -->
     <div id="settings-modal" class="modal">
-      <div class="modal-content front">
-        <span class="close front" onclick="closeSettingsModal()">&times;</span>
+      <div class="modal-content">
+        <span class="close" onclick="closeSettingsModal()">&times;</span>
 
-        <div class="img-sel-container">
-          <div class="radio-container">
-            <input type="radio" id="uploadOption" name="backgroundOption" checked>
-            <label for="uploadOption">Upload Image</label>
-          </div>
-          <input type="file" id="imageInput" class="input-background-picture" accept="image/*">
-        </div>
-
-        <div class="img-sel-container">
-          <div class="radio-container">
-            <input type="radio" id="urlOption" name="backgroundOption">
-            <label for="urlOption">URL for Image</label>
-          </div>
-          <input type="text" id="imageUrl" placeholder="or enter image URL">
-        </div>
-
-        <!-- Preview the selected image -->
-        <div class="img-preview-container">
-          <img id="backgroundPreview" class="img-preview" src="" alt="Background Preview">
-          <img id="urlBackgroundPreview" class="img-preview" src="" alt="URL Background Preview">
-        </div>
-
-        <!-- Apply the selected image as the background -->
-        <button onclick="applyBackground()">Apply Background</button>
-
-        <form id="uploadForm" class="upload-form no-display" enctype="multipart/form-data">
+        <form id="uploadForm" class="upload-form" enctype="multipart/form-data">
           <input type="file" id="imageInput" class="image-input" accept="image/*" />
-          <button type="button" class="btn-upload" onclick="uploadServerImage()">Upload Image</button>
+          <button type="button" class="btn-upload" onclick="uploadImage()">Upload Image</button>
         </form>
 
         <!-- Logout button -->

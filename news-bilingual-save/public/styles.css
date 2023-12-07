@@ -355,56 +355,12 @@ button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.modal-content.front {
-  display: flex;
-  flex-direction: column;
-}
-
-.input-background-picture {
-  padding: 0;
-  margin-bottom: 0;
-}
-
-#imageInput,
-#imageUrl {
-  margin-bottom: 20px;
-}
-
-.img-sel-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.img-preview {
-  max-width: 180px;
-  margin: 10px;
-}
-
-/* No left margin for the first image */
-.img-preview:first-child {
-  margin-left: 0;
-}
-
-/* No right margin for the last image */
-.img-preview:last-child {
-  margin-right: 0;
-}
-
-.img-preview-container {
-  display: flex;
-}
-
 /* Close button style */
 .close {
   color: #ff5555;
   float: right;
   font-size: 20px;
   font-weight: bold;
-  cursor: pointer;
-}
-
-.close.front {
-  margin-left: auto;
   cursor: pointer;
 }
 
@@ -551,24 +507,12 @@ li {
   margin-bottom: 20px;
 }
 
-/* Add this style for the tooltip */
-.tooltip {
-  display: none;
-  position: absolute;
-  background-color: #333;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  z-index: 1;
-
-  /* Adjust top and left for positioning */
-
-  /* Adjust this value based on your preference */
-  /* top: -20px; */
-  left: -60px;
-  /* Adjust this value based on your preference */
-}
-
+/* Responsive styles for smaller screens */
+/* @media screen and (max-width: 800px) {
+  .modal-content {
+    width: 60%;
+  }
+} */
 
 @media screen and (max-width: 600px) {
   input {

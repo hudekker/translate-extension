@@ -33,45 +33,19 @@ const changeLanguage = selectedLanguage => {
 };
 
 // Function to copy displayed content to the clipboard
-// const copyToClipboard = () => {
-//   let displayedContent = '';
-//   document.querySelectorAll('.p:not(.no-display), .article-title:not(.no-display)').forEach(element => {
-//     // displayedContent += element.textContent.trim() + '\n';
-//     displayedContent += element.textContent.trim() + '\n\n'; // Add double line breaks
-//   });
-
-//   // Copy content to clipboard
-//   navigator.clipboard.writeText(displayedContent)
-//     .then(() => {
-//       console.log('Content copied to clipboard!');
-//     })
-//     .catch(error => {
-//       console.error('Unable to copy to clipboard', error);
-//     });
-// };
-
 const copyToClipboard = () => {
   let displayedContent = '';
   document.querySelectorAll('.p:not(.no-display), .article-title:not(.no-display)').forEach(element => {
-    displayedContent += element.textContent.trim() + '\n\n';
+    // displayedContent += element.textContent.trim() + '\n';
+    displayedContent += element.textContent.trim() + '\n\n'; // Add double line breaks
   });
 
   // Copy content to clipboard
   navigator.clipboard.writeText(displayedContent)
     .then(() => {
-      // Show tooltip
-      const tooltip = document.getElementById('copyTooltip');
-      tooltip.style.display = 'inline-block';
-
-      // Hide tooltip after 2 seconds
-      setTimeout(() => {
-        tooltip.style.display = 'none';
-      }, 2000);
-
       console.log('Content copied to clipboard!');
     })
     .catch(error => {
       console.error('Unable to copy to clipboard', error);
     });
 };
-
