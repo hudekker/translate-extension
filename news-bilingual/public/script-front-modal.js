@@ -125,6 +125,14 @@ function loadPreferences() {
   document.getElementById('backgroundPreview').src = backgroundImage;
   document.getElementById('urlBackgroundPreview').src = backgroundUrl;
   document.getElementById('imageUrl').value = backgroundUrl;
+
+  if (backgroundImage == '') {
+    document.getElementById('backgroundPreview').src = `images/front-11.png`
+  }
+
+  if (backgroundUrl == '') {
+    document.getElementById('urlBackgroundPreview').src = 'https://lh3.googleusercontent.com/pw/ADCreHc_uvVr8prxl9llAC_ZAe5255B3Snm_lqPiHRjppnmf48vK2DFU1YtMu1d3avDvTosvVCiL4bFGJThfpSMAix1hc8JYjZvYl-P_zFbiU-pUbFB0Uvmn7-mkzubLBPUJqZQndrC6p1JzGqZocUVnbctfsQlNzobrZEWUu9pcdrRpVcSmeJ504LdwEx548zQ4esOGu0_iBvFPyyFI727ZXmdXLeZVfOCDeJLsPCenZVyBRi1Y4Li1mgJgTUuDLWsKgDWL_jUhvcjtA0UTp3xDpyDX27gseUX82Ij0bOdX5o7jZoHYaqsvGTdlEvgyNQuloL266eP37Lm1XYHdXBprXlmDWMJZUFTKvf2nmwyi28qsmA9iWoxj0pNsxDitMIIqnf-u-a2N4uuJ21bCcjEaAYYxfj6s-i967vSxXJoVCv_MtutXjVH1zCj7qN-y8rkX_ULHQQyJ1QIwOTQ2tmim4egY6B_KQeBzhVZuq_p9wK-rHBQl9W-JGEaQh-yi7vt9f6sILU0R40r3BJ2szCoP6tv8uNzm9sLePLIunB_1FEeYqg4TkY1bqx15sJ6ZhB6thrPQXv-zAjPUIV8Ea6e1tP3NAKasZojbPthYLzb1vXw_FNgT_XDkn8_dcRoLv0pZXyM0MWKkUy3rJp16O-rPmZY66Lo9j81XBGQL-OwoOfWLyUnA5s85sSN3XJy5NBqlOuoMsBITmorI8JyXFr5lrPNQ0QWdKQRxEJ0Vwo880HbeV5zv-eR8gfApqOQvhive4WpxFRlX2shk4LH_HHuDi00cdah7rNUXdUwyq0Y8ycSQBDaanKWkgnqCW8xyU2oI6CM_zXcZ_Mm8gzGTvRjJ-jFVqAj9PBLXfppeGXGKFMI26dysKyUqxB-mIQGqTjsRtVCtwtR0OO7IFD4BVmz2VRbeWGZHZHxrDvVk1jO1HcfB3TYemLedEUEzSesCed6_YpuYsvVg4Kq2EEiGEQ0Qi0O7jJYbPTvTJYzmJ5BVq85sNyK2VnKiCuO1nBRGF2K76fConfr0rCk0LZvEn14t0XxnZlg3Dgz4o6nngogHHcjXY5nfuA=w873-h873-s-no-gm?authuser=0'
+  }
 }
 
 // Function to create a black placeholder image
