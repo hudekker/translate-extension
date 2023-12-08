@@ -1,6 +1,4 @@
 // Open the star icon modal
-const starModal = document.getElementById('star-modal');
-
 const openStarModal = () => {
   starModal.style.display = 'block';
   loadTextLines(); // Load text lines from local storage when modal opens
@@ -10,19 +8,6 @@ const openStarModal = () => {
 const closeStarModal = () => {
   saveTextLines();
   starModal.style.display = 'none';
-};
-
-// Attach event listener to the close (X) button
-document.getElementById('closeStarModalButton').addEventListener('click', (event) => {
-  event.stopPropagation();
-  closeStarModal();
-});
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = (event) => {
-  if (event.target === starModal) {
-    closeStarModal();
-  }
 };
 
 // Copy selected text line and close the star icon modal
@@ -45,8 +30,6 @@ const copyStarModal = () => {
   closeStarModal();
 };
 
-
-
 // Function to save text lines and selected radio button to local storage
 const saveTextLines = () => {
   const textLines = document.querySelectorAll('.text-line-textarea');
@@ -57,7 +40,6 @@ const saveTextLines = () => {
   localStorage.setItem('textLines', JSON.stringify(linesData));
   localStorage.setItem('selectedRadio', selectedRadioValue);
 };
-
 
 // Function to load text lines and selected radio button from local storage
 const loadTextLines = () => {
@@ -84,3 +66,10 @@ const loadTextLines = () => {
     selectedRadio.checked = true;
   }
 };
+
+// Attach event listener to the close (X) button
+
+btnCloseStarModal.addEventListener('click', (event) => {
+  event.stopPropagation();
+  closeStarModal();
+});

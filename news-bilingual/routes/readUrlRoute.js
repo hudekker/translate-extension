@@ -8,8 +8,6 @@ router.post('/', async (req, res) => {
     const { urlTextarea: url, translationDirection } = req.body;
     const { src, tgt } = setLanguage(translationDirection);
 
-    debugger;
-
     const { articleTitle, bilingualArray } = await readArticleFromUrl(url, src, tgt);
 
     if (!articleTitle) {

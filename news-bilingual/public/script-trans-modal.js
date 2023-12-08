@@ -1,8 +1,9 @@
-// app.js
-
 // Get the modal and gear icon
-var modal = document.getElementById("font-modal");
-var gearIcon = document.getElementById("gear-icon");
+const modal = document.getElementById("font-modal");
+const gearIcon = document.getElementById("gear-icon");
+const starModal = document.getElementById('star-modal');
+const btnCloseGearModal = document.getElementById("btn-close-gear-modal");
+const btnCloseStarModal = document.getElementById("btn-close-star-modal");
 
 // When the user clicks the gear icon, display the modal
 gearIcon.onclick = function () {
@@ -10,17 +11,28 @@ gearIcon.onclick = function () {
 };
 
 // When the user clicks on the close button, close the modal
-var closeBtn = document.getElementsByClassName("close")[0];
-closeBtn.onclick = function () {
+btnCloseGearModal.onclick = function () {
   modal.style.display = "none";
 };
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-  if (event.target === modal) {
-    modal.style.display = "none";
+  switch (event.target) {
+    case modal:
+      modal.style.display = "none";
+      break;
+    case starModal:
+      closeStarModal();
+      break;
+    // Add more cases if needed
+    default:
+      // Default case if the target is not modal or starModal
+      break;
   }
+
 };
+
+
 
 // Function to apply the selected font colors
 function applyFontColors() {

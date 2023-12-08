@@ -86,18 +86,27 @@ const readArticleFromUrl = async (url, src, tgt) => {
     }
 
     // const paragraphs = Array.from(article.querySelectorAll("p"))
+    // const paragraphs = pAll
+    //   .filter((paragraph) => {
+    //     const hasText = paragraph.textContent.trim().length > 0;
+    //     const hasOnlyAnchor = paragraph.children.length === 1 && paragraph.children[0].tagName === "A";
+    //     return hasText || !hasOnlyAnchor;
+    //   })
+    //   .filter((el) => el.innerText != "");
+
+
     const paragraphs = pAll
       .filter((paragraph) => {
         const hasText = paragraph.textContent.trim().length > 0;
-        const hasOnlyAnchor = paragraph.children.length === 1 && paragraph.children[0].tagName === "A";
-        return hasText || !hasOnlyAnchor;
+        const hasAnchor = paragraph.querySelector("a") !== null;
+        return hasText || hasAnchor;
       })
       .filter((el) => el.innerText != "");
 
     const paragraphsText = paragraphs.map((el) => el.textContent);
 
     for (let i = 0; i < paragraphsText.length; i++) {
-      if (i === 0 || paragraphsText[i].startsWith('您使用的瀏覽器版本較舊')) continue;
+      if (i < 3 && paragraphsText[i].includes('瀏覽器')) continue;
 
       const originalText = paragraphsText[i];
       const translatedText = await translateText(originalText, src, tgt);

@@ -11,3 +11,7 @@
 .line-group {
   display: flex;
 }
+
+.to-be-deleted {
+  text-decoration: line-through;
+}
