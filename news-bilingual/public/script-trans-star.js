@@ -46,9 +46,17 @@ const loadTextLines = () => {
   const textLines = JSON.parse(localStorage.getItem('textLines')) || [];
   const textAreas = document.querySelectorAll('.text-line-textarea');
 
+  // default
+  defaultLines = [];
+  defaultLines[0] = 'Summarize the top 10 points of this article in both english and chinese';
+  defaultLines[1] = 'For this article, describe 10 difficult grammar phrases or usages';
+  defaultLines[2] = 'Give me explanation of 10 vocabulary difficulties in this article in both english and chinese';
+  defaultLines[3] = 'Summarize 10 points in chinese';
+  defaultLines[4] = 'Explain 15 vocabulary chinese words and explain it in chinese';
+
   // Populate text areas with data from local storage
   textAreas.forEach((textarea, index) => {
-    textarea.value = textLines[index] || '';
+    textarea.value = textLines[index] || defaultLines[index];
   });
 
   // Set the selected radio button based on the stored value, or default to the first one
