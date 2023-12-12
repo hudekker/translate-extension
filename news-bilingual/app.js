@@ -29,6 +29,12 @@ const baseURL = process.env.NODE_ENV === 'production'
   ? process.env.PROD_BASE_URL
   : process.env.DEV_BASE_URL;
 
+// Create oath2
+const oAuth2Client = new OAuth2Client(
+  process.env.CLIENT_ID,
+  process.env.CLIENT_SECRET,
+  `${baseURL}/auth/google/callback`
+);
 // Approved credentials
 const approvedEmails = ['ntnurobert@gmail.com', 'hudektech@gmail.com', 'hudekker@gmail.com'];
 const readUrlRoute = require('./routes/readUrlRoute.js');
@@ -63,15 +69,12 @@ app.use((req, res, next) => {
   next();
 });
 
-// Endpoint to serve the EJS template
-// app.get('/', (req, res) => {
-//   res.render('index', { message: 'hi' });
-// });
 app.get('/', (req, res) => {
   if (req.isAuthenticated()) {
     res.render('index', { message: 'hi' });
   } else {
-    res.redirect('/auth/google');
+    res.redirect('/login');
+    // res.redirect('/auth/google');
   }
 });
 
@@ -130,11 +133,23 @@ const handleGoogleAuthError = (err, req, res, next) => {
   return res.redirect('/dashboard');
 };
 
-app.get('/auth/google',
-  passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/userinfo.email'] }),
-  (req, res, next) => {
-    passport.authenticate('google', handleGoogleAuthError)(req, res, next);
+app.get('/login', (req, res, next) => {
+  const authUrl = oAuth2Client.generateAuthUrl({
+    access_type: 'offline',
+    scope: ['https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/userinfo.email'],
+    prompt: 'select_account', // Add this line for Account Chooser
   });
+
+  res.redirect(authUrl);
+});
+
+
+
+// app.get('/auth/google',
+//   passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/userinfo.email'] }),
+//   (req, res, next) => {
+//     passport.authenticate('google', handleGoogleAuthError)(req, res, next);
+//   });
 
 app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/unauthorized' }),

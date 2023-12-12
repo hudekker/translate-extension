@@ -14,4 +14,9 @@
 
 .to-be-deleted {
   text-decoration: line-through;
+  color: red !important;
+}
+
+.fa-minus-circle {
+  color: red;
 }

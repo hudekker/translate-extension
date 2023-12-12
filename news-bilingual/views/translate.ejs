@@ -30,11 +30,15 @@
     </h3>
 
     <div class="results-container">
-      <% bilingualArray.forEach(paragraph=> { %>
+      <% bilingualArray.forEach((paragraph, index)=> { %>
         <p class="p <%= translationDirection === 'chineseToEnglish' ? 'chinese' : 'english' %>">
+          <span class="no-display" data-to-be-deleted data-index="<%= index %>"> <i class="fas fa-minus-circle fa-1x"
+              onclick="toggleStrikethrough(<%= index %>)"></i></span>
           <%- translationDirection==='chineseToEnglish' ? paragraph.chinese : paragraph.english %>
         </p>
         <p class="p <%= translationDirection === 'chineseToEnglish' ? 'english' : 'chinese' %>">
+          <span class="no-display" data-to-be-deleted data-index="<%= index %>"> <i class="fas fa-minus-circle fa-1x"
+              onclick="toggleStrikethrough(<%= index %>)"></i></span>
           <%- translationDirection==='chineseToEnglish' ? paragraph.english : paragraph.chinese %>
         </p>
         <% }) %>
@@ -52,9 +56,11 @@
     <div class="lang-icon" onclick="changeLanguage('chinese')">
       <i class="fas fa-language2 fa-1x">中</i> <!-- You can customize the size and style here -->
     </div>
+
     <div class="lang-icon" onclick="changeLanguage('english')">
       <i class="fas fa-language2 fa-1x">英</i>
     </div>
+
     <div class="lang-icon" onclick="changeLanguage('bilingual')">
       <i class="fas fa-language2 fa-1x">雙</i>
     </div>
@@ -63,6 +69,14 @@
 
     <div class="copy-icon" onclick="copyToClipboard()">
       <i class="fas fa-copy fa-1x"></i>
+    </div>
+
+    <div id="edit-icon" class="edit-icon" onclick="editParagraphs('edit')">
+      <i class="fas fa-pencil-alt fa-1x"></i>
+    </div>
+
+    <div id="save-icon" class="save-icon no-display" onclick="editParagraphs('save')">
+      <i class="fas fa-check fa-1x"></i>
     </div>
 
     <div class="star-icon" onclick="openStarModal()">
@@ -177,6 +191,7 @@
   <script src="script-trans-modal.js"></script>
   <script src="script-trans.js"></script>
   <script src="script-trans-star.js"></script>
+  <script src="script-trans-edit.js"></script>
 </body>
 
 </html>

@@ -126,18 +126,13 @@ function loadPreferences() {
   document.getElementById('urlBackgroundPreview').src = backgroundUrl;
   document.getElementById('imageUrl').value = backgroundUrl;
 
-  if (backgroundImage == '') {
-    document.getElementById('backgroundPreview').src = `images/front-11.png`
-  }
-
-  // Check if the string ends with 'null'
-  if (backgroundImage.endsWith('null')) {
+  if (!backgroundImage || backgroundImage.endsWith('null')) {
     document.getElementById('backgroundPreview').src = `images/front-11.png`
   }
 
   debugger;
 
-  if (backgroundUrl == '') {
+  if (!backgroundUrl || backgroundUrl == '') {
     document.getElementById('urlBackgroundPreview').src = '/images/front-12.png'
   }
 }
