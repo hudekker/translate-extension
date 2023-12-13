@@ -84,7 +84,12 @@ const readTextContent = (sendResponse) => {
     transArray.push(currentParagraph.trim());
   }
 
-  const textareaContent = document.querySelector("textarea").innerHTML;
+  // Select the first span with the attribute lang
+  const firstSpan = document.querySelectorAll("span[lang]>span")[0];
+  const firstTextarea = firstSpan.querySelector("textarea");
+  const firstSiblingAfterTextarea = firstTextarea.nextElementSibling;
+
+  const textareaContent = firstSiblingAfterTextarea.innerHTML;
   const origArray = textareaContent.split("\n\n");
   // const origArray = sentencesArray[0].split("\n\n");
   console.log("Original Array:", origArray);

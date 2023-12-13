@@ -164,18 +164,15 @@ input {
   font-family: "Noto Sans TC", sans-serif;
 }
 
-.p {
+p.p {
   font-size: 20px;
   font-weight: 200;
   color: #f8f8f2;
-}
-
-.p.english {
   font-family: "Roboto", sans-serif;
   font-family: "Noto Sans", sans-serif;
 }
 
-.p.chinese {
+p.p.zh-TW {
   font-family: "Noto Sans TC", sans-serif;
 }
 
