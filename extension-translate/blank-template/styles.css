@@ -1,0 +1,611 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap');
+ */
+
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;200;300;400&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;200;300;400&family=Noto+Sans:wght@100;200;400&family=Roboto:wght@300;400&display=swap");
+
+:root {
+  /* Base Colors */
+  --dracula-background: #282a36;
+  --dracula-foreground: #f8f8f2;
+  --dracula-selection: #44475a;
+  --dracula-current-line: #44475a;
+
+  /* Syntax Colors */
+  --dracula-comment: #6272a4;
+  --dracula-cyan: #8be9fd;
+  --dracula-green: #50fa7b;
+  --dracula-orange: #ffb86c;
+  --dracula-pink: #ff79c6;
+  --dracula-purple: #bd93f9;
+  --dracula-red: #ff5555;
+  --dracula-yellow: #f1fa8c;
+
+  /* UI Colors */
+  --dracula-blue: #8be9fd;
+  --dracula-cyan-light: #8be9fd;
+  --dracula-green-light: #50fa7b;
+  --dracula-orange-light: #ffb86c;
+  --dracula-pink-light: #ff79c6;
+  --dracula-purple-light: #bd93f9;
+  --dracula-red-light: #ff6e6e;
+  --dracula-yellow-light: #f1fa8c;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+  background-color: #ffecd9;
+  font-family: "Ubuntu", sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+.front-theme {
+  /* background-image: url('/images/front-2.png'); */
+  /* transition: background-image 0.5s ease-in-out; */
+  transition: background-image 1s linear;
+  /* transition: background-image 1s ease-in-out; */
+  background-size: 100% 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: left;
+  min-height: 100vh;
+}
+
+/* 300 roboto; noto sans 100, 400; */
+
+body.dark-theme {
+  background-color: #282a36;
+  /* background-color: var(--dracula-background); */
+  color: #f8f8f2;
+  /* color: var(--dracula-foreground); */
+}
+
+#messagePopup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f44336;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#main-container-1 {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 10px 20px;
+  background: #44475a;
+  border-radius: 5px;
+  position: relative;
+}
+
+#main-container-2 {
+  max-width: 800px;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 0 20px;
+}
+
+h2,
+h3 {
+  max-width: 100%;
+  margin: 20px auto;
+  margin-top: 10px;
+  padding: 0 20px;
+  color: #ffb86c;
+  color: #bd93f9;
+  color: #50fa7b;
+}
+
+.results-container {
+  max-width: 100%;
+  margin: 0 auto;
+  font-weight: 200;
+  /* background-color: #fff;
+  background-color: #121212; */
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  border-radius: 8px;
+  margin-top: 20px;
+
+  background-color: #44475a;
+  background-color: #282a36;
+  /* background-color: var(--dracula-selection); */
+  padding: 15px;
+  border-radius: 8px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 300px;
+  padding: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.article-title {
+  font-size: 24px;
+  text-align: center;
+  color: #ffb86c;
+  color: #50fa7b;
+  color: #50fa7b;
+  /* color: #bd93f9; */
+  font-weight: 200;
+  margin-bottom: 40px;
+}
+
+.article-title.english {
+  font-family: "Roboto", sans-serif;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.article-title.chinese {
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+.p {
+  font-size: 20px;
+  font-weight: 200;
+  color: #f8f8f2;
+}
+
+.p.english {
+  font-family: "Roboto", sans-serif;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.p.chinese {
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+#form-container {
+  text-align: center;
+  margin-top: 20px;
+  margin: 0 auto;
+}
+
+/* Style for the radio container */
+.radio-container {
+  margin-bottom: 10px;
+  display: flex;
+  /* flex-direction: row; */
+  align-items: center;
+}
+
+.url-container {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+/* Style for the radio buttons */
+input[type="radio"] {
+  margin-right: 5px;
+  width: auto;
+}
+
+/* Style for the submit button */
+button {
+  border: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #ffb86c;
+  color: #f8f8f2;
+  color: #282a36;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+button:hover {
+  background-color: #45a049;
+  background-color: #50fa7b;
+  background-color: #ff79c6;
+  background-color: #e07c36;
+  /* color: #f8f8f2; */
+  border: 1px solid #fff;
+}
+
+.btn-clear {
+  background-color: #6272a4;
+  color: #f8f8f2;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-clear:hover {
+  background-color: #44475a;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.btn-paste {
+  background-color: #6272a4;
+  background-color: #ffb86c;
+  color: #44475a;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-paste:hover {
+  background-color: #44475a;
+  background-color: #ffb86c;
+  background-color: #e07c36;
+  color: #f8f8f2;
+  border: 1px solid #fff;
+}
+
+.btn-submit {
+  background-color: #4ae06c;
+  color: #44475a;
+}
+
+.btn-submit:hover {
+  background-color: #36a450;
+  color: #f8f8f2;
+  border: 1px solid #fff;
+}
+
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.image-input {
+  margin-bottom: 16px;
+  padding: 0;
+  color: #282a36;
+}
+
+.btn-upload {
+  margin-top: 16px;
+  background-color: #4caf50;
+}
+
+.btn-upload:hover {
+  background-color: #45a049;
+}
+
+.btn-logout {
+  margin-top: 16px;
+  margin-bottom: 0;
+  background-color: #e74c3c;
+}
+
+.btn-logout:hover {
+  background-color: #c0392b;
+  color: white;
+}
+
+.btn-container {
+  /* max-width: 320px; */
+  /* max-width: 320px; */
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-container > button {
+  width: 80px;
+}
+
+/* Gear icon style */
+.gear-icon {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#gear-icon-1 {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Modal style */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #44475a;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #44475a;
+  width: 60%;
+  max-width: 400px;
+  color: #f8f8f2;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content.front {
+  display: flex;
+  flex-direction: column;
+  margin: 10% auto;
+}
+
+.input-background-picture {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+#imageInput,
+#imageUrl {
+  margin-bottom: 20px;
+  width: auto;
+}
+
+.img-sel-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.img-preview {
+  max-width: 180px;
+  max-height: 180px;
+  margin: 10px;
+  object-fit: cover;
+}
+
+/* No left margin for the first image */
+.img-preview:first-child {
+  margin-left: 0;
+}
+
+/* No right margin for the last image */
+.img-preview:last-child {
+  margin-right: 0;
+}
+
+.img-preview-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Close button style */
+.close {
+  color: #ff5555;
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close.front {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #ff79c6;
+}
+
+/* Dropdown style */
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #44475a;
+  border-radius: 4px;
+  background-color: #282a36;
+  color: #f8f8f2;
+}
+
+/* Modal style */
+button.btn-modal-apply {
+  background-color: #50fa7b;
+  color: #282a36;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button.btn-modal-apply:hover {
+  background-color: #4ae06c;
+}
+
+/* Section style */
+.color-section {
+  border: 2px solid #6272a4;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* Section header style */
+.section-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ff79c6;
+  /* Header text color */
+}
+
+/* Section divider style */
+.section-divider {
+  border: none;
+  height: 2px;
+  background-color: #6272a4;
+  margin: 12px 0;
+}
+
+/* Responsive styles for smaller screens */
+#urlInput {
+  padding: 10px;
+  margin-right: 10px;
+  width: 300px;
+}
+
+.error-message {
+  color: #d9534f;
+}
+
+.result-text {
+  white-space: pre-line;
+}
+
+.no-display {
+  display: none;
+}
+
+/* Gear icon style */
+.gear-icon-container {
+  cursor: pointer;
+  position: fixed;
+  top: 20px;
+  /* Adjust the top positioning as needed */
+  right: 20px;
+  /* Adjust the right positioning as needed */
+  /* z-index: 1000; */
+  /* Ensure it's above other elements */
+}
+
+.fa-cog {
+  /* font-size: 2em; */
+  color: white;
+}
+
+.text-container {
+  display: flex;
+  align-items: center;
+}
+
+textarea {
+  width: 100%;
+  /* width: 320px; */
+  /* Set the desired width */
+  height: 40px;
+  /* Set the desired height */
+  box-sizing: border-box;
+  resize: none;
+  /* Disable textarea resizing */
+  font-size: 18px;
+  /* Set the desired font size */
+  padding: 6px;
+  /* Adjust padding to center the cursor vertically */
+  overflow-y: hidden;
+  /* Hide overflow vertically */
+  white-space: nowrap;
+  /* Prevent text wrapping */
+}
+
+.delete-container {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+}
+
+/* Reset styles for list items and remove default list styling */
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Ensure the icons are styled correctly */
+.icon-container {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  /* margin-top: 10px; */
+  /* Adjust the spacing as needed */
+  cursor: pointer;
+}
+
+.lang-icon {
+  margin-bottom: 20px;
+}
+
+.copy-icon {
+  margin-bottom: 20px;
+}
+
+.star-icon {
+  margin-bottom: 20px;
+}
+
+.edit-icon {
+  margin-bottom: 20px;
+}
+
+.save-icon {
+  margin-bottom: 20px;
+}
+
+/* Add this style for the tooltip */
+.tooltip {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 5px;
+  z-index: 1;
+  left: -60px;
+}
+
+@media screen and (max-width: 600px) {
+  input {
+    width: 100%;
+  }
+
+  .img-preview {
+    max-width: 150px;
+    max-height: 150px;
+    margin: 5px;
+  }
+
+  #urlInput {
+    padding: 5px;
+    margin-right: 5px;
+    width: 250px;
+  }
+
+  .modal-content {
+    width: 80%;
+  }
+}

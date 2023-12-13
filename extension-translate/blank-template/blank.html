@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Bilingual</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-abc123..." crossorigin="anonymous" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles-trans.css">
+</head>
+
+<body class="dark-theme">
+
+  <div id="main-container-2">
+
+    <h3 class="article-title">AB Translate by 胡浩洋</h3>
+
+    <!-- Main div for the results -->
+    <div id="results-container"></div>
+
+    <!-- icons -->
+    <div id="gear-icon" class="gear-icon-container" onclick="openSettingsModal()">
+      <i class="fas fa-cog fa-1x"></i>
+    </div>
+    <!-- Chinese (中) icon -->
+    <div class="icon-container">
+      <div class="lang-icon" onclick="changeLanguage('lang1')">A
+        <!-- <i class="fas fa-language2 fa-1x">中</i>  -->
+      </div>
+
+      <div class="lang-icon" onclick="changeLanguage('lang2')">B
+        <!-- <i class="fas fa-language2 fa-1x">英</i> -->
+      </div>
+
+      <div class="lang-icon" onclick="changeLanguage('bilingual')">AB
+        <!-- <i class="fas fa-language2 fa-1x">雙</i> -->
+      </div>
+
+      <div class="tooltip" id="copyTooltip">Copied!</div>
+
+      <div class="copy-icon" onclick="copyToClipboard()">
+        <i class="fas fa-copy fa-1x"></i>
+      </div>
+
+      <div id="edit-icon" class="edit-icon" onclick="editParagraphs('edit')">
+        <i class="fas fa-pencil-alt fa-1x"></i>
+      </div>
+
+      <div id="save-icon" class="save-icon no-display" onclick="editParagraphs('save')">
+        <i class="fas fa-check fa-1x"></i>
+      </div>
+
+      <div class="star-icon" onclick="openStarModal()">
+        <i class="fas fa-star fa-1x"></i>
+      </div>
+    </div>
+
+
+    <!-- Modal for the star icon -->
+    <div id="star-modal" class="modal">
+      <div class="modal-content">
+        <span id="btn-close-star-modal" class="close">&times;</span>
+        <!-- Text lines with radio buttons -->
+        <div class="text-lines-section">
+          <div class="section-header">Prepended Text Line:</div>
+          <div class="section-content">
+            <!-- Line Group 1 -->
+            <div class="line-group">
+              <input type="radio" id="line1" name="textLines" value="Line 1">
+              <textarea id="line1TextArea" class="text-line-textarea"></textarea>
+            </div>
+
+            <!-- Line Group 2 -->
+            <div class="line-group">
+              <input type="radio" id="line2" name="textLines" value="Line 2">
+              <textarea id="line2TextArea" class="text-line-textarea"></textarea>
+            </div>
+
+            <!-- Line Group 3 -->
+            <div class="line-group">
+              <input type="radio" id="line3" name="textLines" value="Line 3">
+              <textarea id="line3TextArea" class="text-line-textarea"></textarea>
+            </div>
+
+            <!-- Line Group 4 -->
+            <div class="line-group">
+              <input type="radio" id="line4" name="textLines" value="Line 4">
+              <textarea id="line4TextArea" class="text-line-textarea"></textarea>
+            </div>
+
+            <!-- Line Group 5 -->
+            <div class="line-group">
+              <input type="radio" id="line5" name="textLines" value="Line 5">
+              <textarea id="line5TextArea" class="text-line-textarea"></textarea>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Copy button -->
+        <button class="btn-modal-apply" onclick="copyStarModal()">Copy Document with Prepended Text</button>
+      </div>
+    </div>
+
+
+    <!-- Modal for changing font color -->
+    <div id="font-modal" class="modal">
+      <div class="modal-content">
+        <span id="btn-close-gear-modal" class="close">&times;</span>
+
+        <!-- Title section -->
+        <div class="color-section">
+          <div class="section-header">Choose "A" Color:</div>
+          <div class="section-content">
+            <label class="no-display" for="lang1Color">Select Title Color:</label>
+            <input class="no-display" type="color" id="lang1Color" name="lang1Color" value="#000000">
+
+            <label for="lang1ColorDropdown">Select from predefined colors:</label>
+            <select id="lang1ColorDropdown">
+              <option value="#f8f8f2">White</option>
+              <option value="#ff79c6">Pink</option>
+              <option value="#bd93f9">Purple</option>
+              <option value="#f1fa8c">Yellow</option>
+              <option value="#50fa7b">Green</option>
+              <option value="#ffb86c">Orange</option>
+              <option value="#8be9fd">Cyan</option>
+              <option value="#ff5555">Red</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Add a border between the sections -->
+        <hr class="section-divider">
+
+        <!-- Paragraph section -->
+        <div class="color-section">
+          <div class="section-header">Choose 'B' Color:</div>
+          <div class="section-content">
+            <label class="no-display" for="lang2Color">Select Paragraph Color:</label>
+            <input class="no-display" type="color" id="lang2Color" name="lang2Color" value="#000000">
+
+            <label for="lang2ColorDropdown">Select from predefined colors:</label>
+            <select id="lang2ColorDropdown">
+              <option value="#f8f8f2">White</option>
+              <option value="#ff79c6">Pink</option>
+              <option value="#bd93f9">Purple</option>
+              <option value="#f1fa8c">Yellow</option>
+              <option value="#50fa7b">Green</option>
+              <option value="#ffb86c">Orange</option>
+              <option value="#8be9fd">Cyan</option>
+              <option value="#ff5555">Red</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Button to apply colors with the added class -->
+        <button class="btn-modal-apply" onclick="applyFontColors()">Apply</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="blank-script.js"></script>
+  <script src="script-trans-modal.js"></script>
+  <script src="script-trans.js"></script>
+  <script src="script-trans-star.js"></script>
+  <script src="script-trans-edit.js"></script>
+</body>
+
+</html>

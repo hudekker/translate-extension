@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Chinese Text Reader",
+  "version": "1.0",
+  "description": "Reads text content from specified span elements",
+  "permissions": ["activeTab"],
+
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "48": "icons/icon32.png"
+  },
+
+  "action": {
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png"
+    }
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://translate.google.com/*"],
+      "js": ["content.js"]
+    },
+    {
+      "matches": ["https://tygroovy.com/*"],
+      "js": ["content.js"]
+    }
+  ]
+}

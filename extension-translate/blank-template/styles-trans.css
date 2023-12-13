@@ -1,0 +1,22 @@
+/* Add styles for the star icon */
+.star-icon {
+  cursor: pointer;
+}
+
+/* Add styles for the star icon modal */
+#star-modal {
+  display: none;
+}
+
+.line-group {
+  display: flex;
+}
+
+.to-be-deleted {
+  text-decoration: line-through;
+  color: red !important;
+}
+
+.fa-minus-circle {
+  color: red;
+}
