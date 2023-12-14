@@ -90,3 +90,21 @@ let toggleTextSize = () => {
     }
   });
 };
+
+function exportToPDF() {
+  // Loop through all paragraphs and update styles
+  let ptags = document.querySelectorAll(".p.p");
+  let htags = document.querySelectorAll("h1, h2, h3");
+
+  ptags.forEach((el) => el.classList.add("pdf"));
+  htags.forEach((el) => el.classList.add("pdf"));
+  document.querySelector("body").classList.add("pdf");
+  document.querySelector("#icon-container").classList.add("pdf");
+
+  window.print();
+
+  ptags.forEach((el) => el.classList.remove("pdf"));
+  htags.forEach((el) => el.classList.remove("pdf"));
+  document.querySelector("body").classList.remove("pdf");
+  document.querySelector("#icon-container").classList.remove("pdf");
+}

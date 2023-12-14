@@ -44,11 +44,12 @@
     <div id="results-container"></div>
 
     <!-- icons -->
-    <div id="gear-icon" class="gear-icon-container" onclick="openSettingsModal()">
-      <i class="fas fa-cog fa-1x"></i>
-    </div>
     <!-- Chinese (中) icon -->
-    <div class="icon-container">
+    <div id="icon-container" class="icon-container">
+      <div id="gear-icon" class="gear-icon-container" onclick="openSettingsModal()">
+        <i class="fas fa-cog fa-1x"></i>
+      </div>
+
       <div class="lang-icon" onclick="changeLanguage('lang1')">A
         <!-- <i class="fas fa-language2 fa-1x">中</i>  -->
       </div>
@@ -77,6 +78,10 @@
 
       <div id="save-icon" class="save-icon no-display" onclick="editParagraphs('save')">
         <i class="fas fa-check fa-1x"></i>
+      </div>
+
+      <div id="pdf-export-icon" class="pdf-export-icon" onclick="exportToPDF()">
+        <i class="fas fa-file-pdf fa-1x"></i>
       </div>
 
       <div class="star-icon" onclick="openStarModal()">

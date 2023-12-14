@@ -581,10 +581,25 @@ li {
   margin-bottom: 20px;
 }
 
+.pdf-export-icon {
+  margin-bottom: 20px;
+}
+
 .save-icon {
   margin-bottom: 20px;
 }
 
+p.p.pdf,
+body.dark-theme.pdf,
+h3.pdf {
+  font-weight: 400 !important;
+  color: black !important;
+  background-color: white !important;
+}
+
+.icon-container.pdf {
+  display: none !important;
+}
 /* Add this style for the tooltip */
 .tooltip {
   display: none;
