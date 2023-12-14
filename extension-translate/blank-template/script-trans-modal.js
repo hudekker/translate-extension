@@ -103,3 +103,32 @@ document.addEventListener("DOMContentLoaded", function () {
   // Your code or function call here
   // loadSavedValues();
 });
+
+// ...
+
+// Add a reference to the swap colors button
+const swapColorsBtn = document.getElementById("swapColorsBtn");
+
+// When the user clicks the swap colors button, swap the colors between "A" and "B" content
+swapColorsBtn.onclick = function () {
+  // Get the colors of "A" section
+  const lang1ColorPicker = document.getElementById("lang1Color");
+  const lang1Dropdown = document.getElementById("lang1ColorDropdown");
+  const lang1Color = lang1Dropdown.value || lang1ColorPicker.value;
+
+  // Get the colors of "B" section
+  const lang2ColorPicker = document.getElementById("lang2Color");
+  const lang2Dropdown = document.getElementById("lang2ColorDropdown");
+  const lang2Color = lang2Dropdown.value || lang2ColorPicker.value;
+
+  // Swap the colors
+  lang1Dropdown.value = lang2Color;
+  lang1ColorPicker.value = lang2Color;
+  applyColor("lang1Color", "lang1ColorDropdown", ".p.lang1");
+
+  lang2Dropdown.value = lang1Color;
+  lang2ColorPicker.value = lang1Color;
+  applyColor("lang2Color", "lang2ColorDropdown", ".p.lang2");
+};
+
+// ...

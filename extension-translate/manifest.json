@@ -1,21 +1,21 @@
 {
   "manifest_version": 3,
-  "name": "Chinese Text Reader",
+  "name": "AB Translate",
   "version": "1.0",
-  "description": "Reads text content from specified span elements",
-  "permissions": ["activeTab"],
+  "description": "Translates A/B languages in easy to read, analyze format",
+  "permissions": ["activeTab", "storage", "tabs"],
 
   "background": {
     "service_worker": "background.js"
   },
   "icons": {
-    "48": "icons/icon32.png"
+    "48": "blank-template/icons/icon32.png"
   },
 
   "action": {
     "default_icon": {
-      "16": "icons/icon16.png",
-      "32": "icons/icon32.png"
+      "16": "blank-template/icons/icon16.png",
+      "32": "blank-template/icons/icon32.png"
     }
   },
 

@@ -164,6 +164,14 @@ input {
   font-family: "Noto Sans TC", sans-serif;
 }
 
+p.p.big {
+  font-size: 24px;
+}
+
+p.p.small {
+  font-size: 16px;
+}
+
 p.p {
   font-size: 20px;
   font-weight: 200;
@@ -566,6 +574,10 @@ li {
 }
 
 .edit-icon {
+  margin-bottom: 20px;
+}
+
+.text-size-icon {
   margin-bottom: 20px;
 }
 

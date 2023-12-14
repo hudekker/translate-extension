@@ -122,3 +122,52 @@ let displayPairedParagraphs = (origArray, transArray) => {
   document.write(newTabDocument.documentElement.outerHTML);
   document.close();
 };
+
+// Function to notify the background script about the page refresh
+// function notifyBackgroundOnRefresh() {
+//   chrome.runtime.sendMessage({ refresh: true }, (response) => {
+//     if (chrome.runtime.lastError) {
+//       console.log("Failed to notify background about refresh:", chrome.runtime.lastError);
+//     } else {
+//       console.log("Background notified about refresh");
+//     }
+//   });
+// }
+
+// Function to notify the background script about the page refresh
+function notifyBackgroundOnRefresh(callback) {
+  // Check if the URL matches the expected pattern
+  if (document.URL.startsWith("https://tygroovy.com/")) {
+    // Send the message to the background script
+    chrome.runtime.sendMessage({ refresh: true }, (response) => {
+      if (chrome.runtime.lastError) {
+        console.error("Failed to notify background about refresh:", chrome.runtime.lastError);
+      } else {
+        console.log("Background notified about refresh");
+        if (callback) {
+          callback(response); // Pass any relevant data to the callback
+        }
+      }
+    });
+  } else {
+    console.log("Not on the expected page. Skipping refresh notification.");
+  }
+}
+
+// Listen for refresh
+window.addEventListener("beforeunload", notifyBackgroundOnRefresh);
+
+// Handle gotoChatgpt from the script.js raising and event on click gotoChatgpt
+const handleCustomEvent = () => {
+  console.log("Custom event received in content.js");
+  debugger;
+  // Send a message to the background script
+  chrome.runtime.sendMessage({ action: "gotoChatgpt", data: "yourData" }, (response) => {
+    // Handle the response from the background script if needed
+    debugger;
+    console.log(response);
+  });
+};
+
+// Listen for the custom event gotoChatgpt from script.js
+document.addEventListener("gotoChatgpt", handleCustomEvent);

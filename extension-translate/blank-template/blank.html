@@ -3,7 +3,31 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Bilingual</title>
+  <title>AB Translate</title>
+  <!-- Social Media Meta Tags -->
+  <meta property="og:title" content="胡浩洋 - Personal Website">
+  <meta property="og:description" content="Your short description here">
+  <meta property="og:image" content="your-image-url.jpg">
+  <meta property="og:url" content="https://tygroovy.com">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Your Name - Personal Website">
+  <meta name="twitter:description" content="Your short description here">
+  <meta name="twitter:image" content="your-image-url.jpg">
+
+  <!-- Other Meta Tags -->
+  <meta name="author" content="胡浩洋">
+  <meta name="robots" content="index, follow">
+
+  <!-- icons -->
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/icon16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon32.png" />
+  <link rel="icon" type="image/png" sizes="180x180" href="icons/icon180.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/icon512.png" />
+
+  <!-- styles -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
     integrity="sha512-abc123..." crossorigin="anonymous" />
   <link rel="stylesheet" href="styles.css">
@@ -35,6 +59,10 @@
 
       <div class="lang-icon" onclick="changeLanguage('bilingual')">AB
         <!-- <i class="fas fa-language2 fa-1x">雙</i> -->
+      </div>
+
+      <div id="text-size-icon" class="text-size-icon" onclick="toggleTextSize()">
+        <i class="fas fa-text-height fa-1x"></i>
       </div>
 
       <div class="tooltip" id="copyTooltip">Copied!</div>
@@ -99,7 +127,10 @@
         </div>
 
         <!-- Copy button -->
-        <button class="btn-modal-apply" onclick="copyStarModal()">Copy Document with Prepended Text</button>
+        <button class="btn-modal-apply" onclick="copyStarModal('')">Copy Document with Prepended Text</button>
+
+        <button class="btn-modal-apply" onclick="copyStarModal('chatgpt')">Copy with
+          Prepend Goto ChatGPT <i class="far fa-comment"></i></button>
       </div>
     </div>
 
@@ -109,7 +140,7 @@
       <div class="modal-content">
         <span id="btn-close-gear-modal" class="close">&times;</span>
 
-        <!-- Title section -->
+        <!-- "A" section -->
         <div class="color-section">
           <div class="section-header">Choose "A" Color:</div>
           <div class="section-content">
@@ -132,8 +163,12 @@
 
         <!-- Add a border between the sections -->
         <hr class="section-divider">
+        <!-- Add a button for color swapping -->
+        <button id="swapColorsBtn">Swap Colors</button>
+        <!-- Add a border between the sections -->
+        <hr class="section-divider">
 
-        <!-- Paragraph section -->
+        <!-- "B" section -->
         <div class="color-section">
           <div class="section-header">Choose 'B' Color:</div>
           <div class="section-content">
