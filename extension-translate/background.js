@@ -178,23 +178,12 @@ const gotoChatgpt = async (sendResponse) => {
       tabId = newTab.id;
     }
 
-    sendResponse({ msg: "success", tabId });
+    sendMessageToTab(tabId, { action: "focusOnChatgptInput", tabId });
+
+    // focusOnChatgptInput
   } catch (error) {
     console.error("Error:", error);
-    sendResponse({ msg: "error", error });
   }
-};
-
-const focusOnChatInput = async (tabId) => {
-  // Assuming the input field in ChatGPT has the id 'chatInput'
-  const script = `
-    document.getElementById('prompt-textarea').focus();
-  `;
-  return new Promise((resolve) => {
-    chrome.tabs.executeScript(tabId, { code: script }, () => {
-      resolve();
-    });
-  });
 };
 
 // // Listen for the extension icon click

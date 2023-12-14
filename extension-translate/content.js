@@ -35,6 +35,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       // });
       // Handle displayData action here
       break;
+
+    case "focusOnChatgptInput":
+      focusOnChatgptInput(request.tabId);
+
+      break;
+
     default:
     // Handle default case here if needed
   }
@@ -160,14 +166,21 @@ window.addEventListener("beforeunload", notifyBackgroundOnRefresh);
 // Handle gotoChatgpt from the script.js raising and event on click gotoChatgpt
 const handleCustomEvent = () => {
   console.log("Custom event received in content.js");
-  debugger;
+
   // Send a message to the background script
   chrome.runtime.sendMessage({ action: "gotoChatgpt", data: "yourData" }, (response) => {
     // Handle the response from the background script if needed
     debugger;
-    console.log(response);
+    console.log("on return: finished sending to gotoChatgpt");
   });
 };
 
 // Listen for the custom event gotoChatgpt from script.js
 document.addEventListener("gotoChatgpt", handleCustomEvent);
+
+// Handle the focus on input prompt
+const focusOnChatgptInput = async (tabId) => {
+  console.log("inside focusOnChatgptInput");
+  console.log(`tabId = ${tabId}`);
+  document.getElementById("prompt-textarea").focus();
+};
