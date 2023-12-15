@@ -95,14 +95,24 @@ function exportToPDF() {
   // Loop through all paragraphs and update styles
   let ptags = document.querySelectorAll(".p.p");
   let htags = document.querySelectorAll("h1, h2, h3");
+  let saveDocumentTitle = document.querySelector("#document-title").innerText;
+  document.querySelector("#document-title").innerText = "";
 
+  // Allow the user to enter a title
+  const userInput = window.prompt("Please enter the document title:", "Default Title");
+
+  // Set the styles to white/black for easy printing and viewing in pdf
+  document.querySelector("#document-title").innerText = userInput;
   ptags.forEach((el) => el.classList.add("pdf"));
   htags.forEach((el) => el.classList.add("pdf"));
   document.querySelector("body").classList.add("pdf");
   document.querySelector("#icon-container").classList.add("pdf");
 
+  // Call the pdf
   window.print();
 
+  // Reset the styles back to original
+  document.querySelector("#document-title").innerText = saveDocumentTitle;
   ptags.forEach((el) => el.classList.remove("pdf"));
   htags.forEach((el) => el.classList.remove("pdf"));
   document.querySelector("body").classList.remove("pdf");

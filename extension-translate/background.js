@@ -98,7 +98,7 @@ chrome.action.onClicked.addListener(async () => {
     const { origArray, transArray, lang1, lang2 } = response;
 
     // // Save data to local storage
-    // await saveDataToLocalStorage({ origArray, transArray, lang1, lang2 });
+    await saveDataToLocalStorage({ origArray, transArray, lang1, lang2 });
 
     // Create new tab
     const newTab = await createTab("https://tygroovy.com/bl/blank.html");
@@ -115,36 +115,33 @@ chrome.action.onClicked.addListener(async () => {
         chrome.tabs.onUpdated.removeListener(listener);
       }
     });
-
-    // Listen for messages from the content script
-    chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
-      if (request.refresh) {
-        const refreshTabId = sender.tab.id;
-        // Handle the refresh notification
-        console.log("Received refresh notification from content script");
-
-        // Listen for tab updates
-        chrome.tabs.onUpdated.addListener(async function listener(tabId, changeInfo, tab) {
-          if (tabId === refreshTabId && changeInfo.status === "complete") {
-            // Content script is ready, send the message
-            sendMessageToTab(refreshTabId, { action: "displayData", origArray, transArray, lang1, lang2 });
-
-            // Remove the listener to avoid multiple calls
-            chrome.tabs.onUpdated.removeListener(listener);
-          }
-        });
-      }
-      // gotoChatgpt
-      if (request.action === "gotoChatgpt") {
-        // gotoChatgpt(sendResponse);
-      }
-    });
   } catch (error) {
     console.error("Error handling icon click:", error);
   }
 });
 
+// Listen for refresh and gotoChatgpt
 chrome.runtime.onMessage.addListener(async (request, sender, sendResponse) => {
+  // Refresh on local content.js
+  if (request.refresh) {
+    let keys = ["origArray", "transArray", "lang1", "lang2"];
+    const { origArray, transArray, lang1, lang2 } = await retrieveDataFromLocalStorage(keys);
+    const refreshTabId = sender.tab.id;
+    // Handle the refresh notification
+    console.log("Received refresh notification from content script");
+
+    // Listen for tab updates
+    chrome.tabs.onUpdated.addListener(async function listener(tabId, changeInfo, tab) {
+      if (tabId === refreshTabId && changeInfo.status === "complete") {
+        // Content script is ready, send the message
+        sendMessageToTab(refreshTabId, { action: "displayData", origArray, transArray, lang1, lang2 });
+
+        // Remove the listener to avoid multiple calls
+        chrome.tabs.onUpdated.removeListener(listener);
+      }
+    });
+  }
+  // on front-end request to goto chatgpt
   if (request.action === "gotoChatgpt") {
     gotoChatgpt(sendResponse);
   }
@@ -185,6 +182,11 @@ const gotoChatgpt = async (sendResponse) => {
     console.error("Error:", error);
   }
 };
+
+// const origArray = response.origArray;
+// const transArray = response.transArray;
+// const lang1 = response.lang1;
+// const lang2 = response.lang2;
 
 // // Listen for the extension icon click
 // chrome.action.onClicked.addListener(async () => {
