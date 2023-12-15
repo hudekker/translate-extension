@@ -3,25 +3,32 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Title</title>
-
+  <title>Google Drive Picker Example</title>
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script src="https://apis.google.com/js/api.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <h1>Google Drive Picker Example</h1>
 
-  <script type="text/ejs" id="myEJSTemplate">
-    <div>
-      <h1><%= title %></h1>
-      <p><%= content %></p>
-    </div>
-    
-  </script>
+  <div class="box">
+    <button onclick="authenticateUser()">Sign In with Google</button>
+  </div>
 
-  <div id="output"></div>
-  <script src="https://cdn.jsdelivr.net/npm/ejs@3.1.6/dist/ejs.min.js"></script>
+  <div class="box">
+    <label for="uploadFile">Upload File:</label>
+    <input type="file" id="uploadFile" accept=".txt">
+    <button onclick="uploadSelectedFile()">Upload Selected File</button>
+  </div>
+
+  <div class="box">
+    <label for="retrieveFileId">Retrieve File by ID:</label>
+    <input type="text" id="retrieveFileId" placeholder="Enter File ID">
+    <button onclick="retrieveFileById()">Retrieve File by ID</button>
+  </div>
+
   <script src="script.js"></script>
 </body>
 
