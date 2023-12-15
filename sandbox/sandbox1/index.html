@@ -8,28 +8,32 @@
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <script src="https://apis.google.com/js/api.js"></script>
   <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
 </head>
 
 <body>
   <h1>Google Drive Picker Example</h1>
 
-  <div class="box">
+  <div class="box" id="signInBox">
     <button onclick="authenticateUser()">Sign In with Google</button>
   </div>
 
-  <div class="box">
+  <div class="box" id="uploadBox">
     <label for="uploadFile">Upload File:</label>
     <input type="file" id="uploadFile" accept=".txt">
+    <div class="container-drive-folder">
+      <button class="btn-drive-folder" onclick="showFolderPicker()">To Drive Folder</button>
+      <div id="selectedFolder">Selected Folder: None</div>
+    </div>
     <button onclick="uploadSelectedFile()">Upload Selected File</button>
   </div>
 
-  <div class="box">
+  <div class="box" id="retrieveBox">
     <label for="retrieveFileId">Retrieve File by ID:</label>
     <input type="text" id="retrieveFileId" placeholder="Enter File ID">
     <button onclick="retrieveFileById()">Retrieve File by ID</button>
   </div>
 
-  <script src="script.js"></script>
 </body>
 
 </html>

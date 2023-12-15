@@ -1,6 +1,20 @@
 // Replace 'YOUR_CLIENT_ID' with your actual OAuth 2.0 client ID.
 const clientId = "YOUR_CLIENT_ID";
 
+let selectedFolderName = "None";
+
+const showFolderPicker = async () => {
+  // Use the Google Picker API to select a destination folder.
+  const folderId = await pickFolder();
+
+  // If the user cancels folder selection, folderId will be null.
+  if (folderId !== null) {
+    // Update the selected folder name for display.
+    selectedFolderName = folderId === "root" ? "Root Folder" : `Folder: ${folderId}`;
+    document.getElementById("selectedFolder").innerText = `Selected Folder: ${selectedFolderName}`;
+  }
+};
+
 const authenticateUser = async () => {
   const auth2 = await gapi.auth2.init({
     client_id: clientId,
@@ -80,19 +94,45 @@ const retrieveFileById = () => {
   retrieveFileContent(fileId);
 };
 
-const uploadSelectedFile = () => {
+const uploadSelectedFile = async () => {
   const fileInput = document.getElementById("uploadFile");
   const file = fileInput.files[0];
 
   if (file) {
-    uploadFile(file);
+    // Use the Google Picker API to select a destination folder.
+    const folderId = await pickFolder();
+
+    // If the user cancels folder selection, folderId will be null.
+    if (folderId !== null) {
+      // Update the selected folder name for display.
+      selectedFolderName = folderId === "root" ? "Root Folder" : `Folder: ${folderId}`;
+      document.getElementById("selectedFolder").innerText = `Selected Folder: ${selectedFolderName}`;
+
+      // Upload the file with the selected destination folder.
+      uploadFile(file, folderId);
+    }
   }
 };
 
-const uploadFile = async (file) => {
-  try {
-    const folderId = "root"; // Use 'root' for the user's root folder.
+const pickFolder = () => {
+  return new Promise((resolve) => {
+    const picker = new google.picker.PickerBuilder()
+      .addView(new google.picker.DocsView(google.picker.ViewId.FOLDERS))
+      .setCallback((data) => {
+        if (data.action === google.picker.Action.PICKED) {
+          const folderId = data.docs[0].id;
+          resolve(folderId);
+        } else {
+          resolve(null); // User canceled folder selection
+        }
+      })
+      .build();
+    picker.setVisible(true);
+  });
+};
 
+const uploadFile = async (file, folderId) => {
+  try {
     const metadata = {
       name: file.name,
       parents: [folderId],

@@ -14,6 +14,16 @@ h1 {
   color: #333;
 }
 
+.container-drive-folder {
+  display: flex;
+  align-items: center;
+}
+
+.btn-drive-folder {
+  margin-top: 0;
+  margin-right: 20px;
+}
+
 .box {
   border: 2px solid #4285f4; /* Google blue */
   border-radius: 8px;
