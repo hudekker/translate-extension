@@ -13,7 +13,7 @@ const DISCOVERY_DOC = "https://www.googleapis.com/discovery/v1/apis/drive/v3/res
 
 // Authorization scopes required by the API; multiple scopes can be
 // included, separated by spaces.
-const SCOPES = "https://www.googleapis.com/auth/drive";
+const SCOPES = "https://www.googleapis.com/auth/drive.metadata.readonly";
 
 let tokenClient;
 let gapiInited = false;
@@ -34,6 +34,7 @@ function gapiLoaded() {
  * discovery doc to initialize the API.
  */
 async function initializeGapiClient() {
+  console.log("initializeGapiClient");
   await gapi.client.init({
     apiKey: API_KEY,
     discoveryDocs: [DISCOVERY_DOC],
@@ -46,6 +47,7 @@ async function initializeGapiClient() {
  * Callback after Google Identity Services are loaded.
  */
 function gisLoaded() {
+  console.log("gisLoaded");
   tokenClient = google.accounts.oauth2.initTokenClient({
     client_id: CLIENT_ID,
     scope: SCOPES,
@@ -74,8 +76,8 @@ function handleAuthClick() {
     }
     document.getElementById("signout_button").style.visibility = "visible";
     document.getElementById("authorize_button").innerText = "Refresh";
-    // await listFiles();
-    // await retrieveFilesInParentFolder();
+    console.log("handleAuthClick");
+    await listFiles();
   };
 
   if (gapi.client.getToken() === null) {
@@ -107,12 +109,9 @@ function handleSignoutClick() {
  */
 async function listFiles() {
   let response;
-  const folderName = "Personal Stuff";
-
   try {
     response = await gapi.client.drive.files.list({
-      q: `name='${folderName}' and mimeType='application/vnd.google-apps.folder'`,
-      pageSize: 500,
+      pageSize: 10,
       fields: "files(id, name)",
     });
   } catch (err) {
@@ -128,86 +127,3 @@ async function listFiles() {
   const output = files.reduce((str, file) => `${str}${file.name} (${file.id})\n`, "Files:\n");
   document.getElementById("content").innerText = output;
 }
-
-const parentFolderName = "Personal Stuff";
-const fileExtension = ".jpg";
-
-const getFolderIdByName = async (folderName) => {
-  try {
-    const response = await gapi.client.drive.files.list({
-      q: `name='${folderName}' and mimeType='application/vnd.google-apps.folder'`,
-      fields: "files(id, name)",
-    });
-
-    const folders = response.result.files;
-    return folders.length > 0 ? folders[0].id : null;
-  } catch (error) {
-    console.error(`Error retrieving folder ID for "${folderName}":`, error);
-    return null;
-  }
-};
-
-const getSubfolderIds = async (parentFolderId) => {
-  try {
-    const response = await gapi.client.drive.files.list({
-      q: `'${parentFolderId}' in parents and mimeType='application/vnd.google-apps.folder'`,
-      fields: "files(id, name)",
-    });
-
-    return response.result.files.map((subfolder) => subfolder.id);
-  } catch (error) {
-    console.error(`Error retrieving subfolder IDs:`, error);
-    return [];
-  }
-};
-
-let output = "";
-
-const retrieveFilesInFolder = async (folderId) => {
-  try {
-    const response = await gapi.client.drive.files.list({
-      q: `'${folderId}' in parents and mimeType='image/jpeg' and name contains '${fileExtension}'`,
-      pageSize: 500,
-      fields: "files(id, name)",
-    });
-
-    const jpgFiles = response.result.files;
-
-    if (jpgFiles && jpgFiles.length > 0) {
-      console.log(`JPG Files in folder "${folderId}":`);
-      jpgFiles.forEach((jpgFile) => {
-        output += `File Name: ${jpgFile.name}, File ID: ${jpgFile.id}\n`;
-      });
-    } else {
-      console.log(`No JPG files found in folder "${folderId}".`);
-      // Set a message in case no files are found
-      document.getElementById("content").innerText = "No JPG files found in the folder.";
-    }
-  } catch (error) {
-    console.error(`Error retrieving JPG files:`, error);
-    // Set an error message in case of an error
-    document.getElementById("content").innerText = "Error retrieving JPG files.";
-  }
-};
-
-const retrieveFilesInSubfolders = async (parentFolderId, subfolderIds) => {
-  for (const subfolderId of subfolderIds) {
-    await retrieveFilesInFolder(subfolderId);
-  }
-};
-
-const retrieveFilesInParentFolder = async () => {
-  const parentFolderId = await getFolderIdByName(parentFolderName);
-  if (parentFolderId) {
-    console.log(`Parent Folder ID for "${parentFolderName}": ${parentFolderId}`);
-    const subfolderIds = await getSubfolderIds(parentFolderId);
-    await retrieveFilesInFolder(parentFolderId);
-    await retrieveFilesInSubfolders(parentFolderId, subfolderIds);
-    // Set the inner text of the "content" element
-    document.getElementById("content").innerText = output;
-  } else {
-    console.log(`No parent folder found with the name "${parentFolderName}".`);
-  }
-};
-
-// Call the function to retrieve JPG files in the parent folder and its subfolders
