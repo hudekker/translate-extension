@@ -9,6 +9,13 @@ npm-debug.log*
 node_modules/
 **/node_modules/
 
+# Ignore token.json, credentials.json, and files starting with "oath" and ending with ".json"
+**/token.json
+**/credentials.json
+**/temp*.json
+**/oath*.json
+
+
 # Environment variables
 .env
 **/.env/

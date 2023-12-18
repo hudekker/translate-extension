@@ -1,0 +1,3 @@
+  const API_KEY = 'AIzaSyD1WjB3Exm9NVxw4IgwE-qN-n7nhx76icw';
+  const CLIENT_ID = '138224583990-m2bbqsgjvto1r6kmhmbvfb662aa77200.apps.googleusercontent.com';
+  const APP_ID = 'utopian-pier-408305';
