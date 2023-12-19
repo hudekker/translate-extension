@@ -30,7 +30,7 @@ async function runSample() {
   });
   google.options({ auth });
 
-  const fileId = '1Bs3dYQJYbsOUTJwXG_rKC2QU4mcEIwvv';
+  const fileId = '0B7jr6XgR3hxbc3RhcnRlcl9maWxl';
   const destPath = path.join(os.tmpdir(), 'important.pdf');
   const dest = fs.createWriteStream(destPath);
   const res = await drive.files.export(

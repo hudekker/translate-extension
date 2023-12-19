@@ -79,19 +79,64 @@ async function runSample(fileId, directoryPath) {
   return downloadFile(file.id);
 }
 
+// async function downloadFile(fileId) {
+//   // Use the Google Drive API to download the file
+//   return drive.files
+//     .get({ fileId, alt: 'media' }, { responseType: 'stream' })
+//     .then(res => {
+//       return new Promise((resolve, reject) => {
+//         // File is saved to the "downloads" directory with a unique filename
+//         const downloadsDir = path.join(__dirname, 'downloads');
+//         if (!fs.existsSync(downloadsDir)) {
+//           fs.mkdirSync(downloadsDir);
+//         }
+
+//         const filePath = path.join(downloadsDir, `${uuid.v4()}.downloaded`);
+//         const dest = fs.createWriteStream(filePath);
+//         let progress = 0;
+
+//         // Stream events to track the download progress
+//         res.data
+//           .on('end', () => {
+//             console.log(`Done downloading file. File saved to: ${filePath}`);
+//             resolve(filePath);
+//           })
+//           .on('error', err => {
+//             console.error('Error downloading file.');
+//             reject(err);
+//           })
+//           .on('data', d => {
+//             progress += d.length;
+//             if (process.stdout.isTTY) {
+//               process.stdout.clearLine();
+//               process.stdout.cursorTo(0);
+//               process.stdout.write(`Downloaded ${progress} bytes`);
+//             }
+//           })
+//           .pipe(dest);
+//       });
+//     });
+// }
 async function downloadFile(fileId) {
+  // Use the Google Drive API to get the file metadata
+  const fileInfo = await drive.files.get({ fileId, fields: 'name' });
+
+  // Extract the file name and extension
+  const originalFileName = fileInfo.data.name;
+  const fileExtension = path.extname(originalFileName);
+
   // Use the Google Drive API to download the file
   return drive.files
     .get({ fileId, alt: 'media' }, { responseType: 'stream' })
     .then(res => {
       return new Promise((resolve, reject) => {
-        // File is saved to the "downloads" directory with a unique filename
-        const downloadsDir = path.join(__dirname, '..', 'downloads');
+        // File is saved to the "downloads" directory with the original filename and extension
+        const downloadsDir = path.join(__dirname, 'downloads');
         if (!fs.existsSync(downloadsDir)) {
           fs.mkdirSync(downloadsDir);
         }
 
-        const filePath = path.join(downloadsDir, `${uuid.v4()}.downloaded`);
+        const filePath = path.join(downloadsDir, originalFileName);
         const dest = fs.createWriteStream(filePath);
         let progress = 0;
 
@@ -117,6 +162,7 @@ async function downloadFile(fileId) {
       });
     });
 }
+
 
 if (module === require.main) {
   if (process.argv.length !== 4) {

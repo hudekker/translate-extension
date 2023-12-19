@@ -2,6 +2,8 @@ const { google } = require('googleapis');
 const path = require('path');
 const { authenticate } = require('@google-cloud/local-auth');
 
+let list = []
+
 async function getFilesInDirectory(directoryName) {
   // Authenticate and obtain user credentials
   const auth = await authenticate({
@@ -37,8 +39,12 @@ async function getFilesInDirectory(directoryName) {
         const fileName = file.name;
         const fileExtension = path.extname(fileName);
 
-        console.log(`${fileName} (${file.id}) - Type: ${fileType}, Extension: ${fileExtension}`);
+        list.push({ fileName, fileId: file.id, fileType, fileExtension })
+
+        // console.log(`${fileName} (${file.id}) - Type: ${fileType}, Extension: ${fileExtension}`);
       }
+
+      console.table(list);
     }
   } catch (error) {
     console.error('Error retrieving files:', error.message);

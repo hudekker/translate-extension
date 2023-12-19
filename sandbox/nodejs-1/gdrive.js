@@ -47,10 +47,11 @@ const scopes = [
     fs.unlinkSync(credentialsPath);
 
     // google.options({ client });
+    const fileMetadata = await drive.files.get({ fileId });
 
     // Get the folder tree
-    let tree = await getTree(drive);
-    console.table(tree)
+    // let tree = await getTree(drive);
+    // console.table(tree)
 
   } catch (error) {
     console.error('Error:', error.message);

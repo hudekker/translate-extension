@@ -1,0 +1,10 @@
+{
+  "web": {
+    "redirect_uris": [
+      "http://localhost:3000/oauth2callback"
+    ],
+    "client_id": "138224583990-m2bbqsgjvto1r6kmhmbvfb662aa77200.apps.googleusercontent.com",
+    "client_secret": "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",
+    "project_id": "utopian-pier-408305"
+  }
+}
