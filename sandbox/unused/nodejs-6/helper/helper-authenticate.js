@@ -1,14 +1,20 @@
 "use strict";
-import { OAuth2Client } from "google-auth-library";
-// import { google } from "googleapis";
-import http from "http";
-import https from "https";
-import { URL } from "url";
-import open from "open";
+const { OAuth2Client } = require('google-auth-library');
+const { google } = require('googleapis');
+const http = require('http');
+const https = require('https');
+const { URL } = require('url');
+const opn = require('open');
 
-const authenticateAndTokenize = async (credentials, scopes) => {
+
+// let gdrive; // Global variable to hold the Google Drive client
+
+
+const authenticate = async (options) => {
   return new Promise((resolve, reject) => {
-    const keys = credentials.installed || credentials.web;
+    const { keyFileData } = options;
+    const scopes = options.scopes;
+    const keys = keyFileData.installed || keyFileData.web;
     const redirectUriString = keys.redirect_uris;
     const redirectUri = new URL(redirectUriString);
     const client = new OAuth2Client({
@@ -19,31 +25,15 @@ const authenticateAndTokenize = async (credentials, scopes) => {
     const handleRequest = async (req, res) => {
       try {
         const url = new URL(req.url, redirectUriString);
-        if (url.pathname !== redirectUri.pathname) return res.end(`Please check google config for  redirect URL, there is a mismatch ${url.pathname} <> ${redirectUri.pathname}`);
+        if (url.pathname !== redirectUri.pathname) return res.end('Invalid callback URL');
 
         const code = url.searchParams.get('code');
         const { tokens } = await client.getToken({ code, redirect_uri: redirectUriString });
         client.credentials = tokens;
 
         // const apis = google.getSupportedAPIs();
-        // res.end('Authentication successful! Drive initialized.');
 
-        // Construct HTML response with a script to close the window
-        const htmlResponse = `
-          <html>
-          <head>
-            <title>Authorization Successful</title>
-          </head>
-          <body>
-            <h1>Authorization Successful! Drive initialized.</h1>
-          </body>
-          </html>
-        `;
-
-        // Send HTML response
-        res.setHeader('Content-Type', 'text/html');
-        res.end(htmlResponse);
-
+        res.end('Authentication successful! Drive initialized.');
 
         // Resolve with an object containing both gdrive and tokens
         resolve({ client, tokens });
@@ -68,10 +58,11 @@ const authenticateAndTokenize = async (credentials, scopes) => {
         access_type: 'offline',
         scope: scopes.join(' ')
       });
-      open(authorizeUrl, { wait: false }).then(cp => cp.unref());
+      opn(authorizeUrl, { wait: false }).then(cp => cp.unref());
     });
   });
 };
 
-export { authenticateAndTokenize };
-
+module.exports = {
+  authenticate: authenticate
+};

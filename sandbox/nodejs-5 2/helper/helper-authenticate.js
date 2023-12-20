@@ -44,7 +44,6 @@ const authenticateAndTokenize = async (credentials, scopes) => {
         res.setHeader('Content-Type', 'text/html');
         res.end(htmlResponse);
 
-
         // Resolve with an object containing both gdrive and tokens
         resolve({ client, tokens });
 

@@ -3,36 +3,60 @@ import { getTree } from './helper/helper-tree.js';
 import { listEvents } from './helper/helper-calendar.js';
 import { config } from 'dotenv';
 import { google } from "googleapis";
+import { GoogleSpreadsheet } from 'google-spreadsheet';
+import { JWT } from 'google-auth-library';
 
-config();
+
+// Initialize auth - see https://theoephraim.github.io/node-google-spreadsheet/#/guides/authentication
+
+
+
 
 // const port = process.env.NODE_ENV === 'production' ? process.env.PORT : 3000;
 
 // Extract values from environment variables
-const redirectUris = process.env.REDIRECT_URIS;
-const clientId = process.env.CLIENT_ID;
-const clientSecret = process.env.CLIENT_SECRET;
-const projectId = process.env.PROJECT_ID;
-const scopes = [
-  'https://www.googleapis.com/auth/drive',
-  'https://www.googleapis.com/auth/calendar',
-  // 'https://www.googleapis.com/auth/drive.metadata.readonly',
-  // Add other scopes as needed
-];
 
 
 (async () => {
 
-  const credentials = {
-    "installed": {
-      "redirect_uris": redirectUris,
-      "client_id": clientId,
-      "client_secret": clientSecret,
-      "project_id": projectId
-    }
-  }
+  config();
 
   try {
+    const redirectUris = process.env.REDIRECT_URIS;
+    const clientId = process.env.CLIENT_ID;
+    const clientSecret = process.env.CLIENT_SECRET;
+    const projectId = process.env.PROJECT_ID;
+    const scopes = [
+      'https://www.googleapis.com/auth/drive',
+      'https://www.googleapis.com/auth/calendar.readonly'
+      // 'https://www.googleapis.com/auth/drive.metadata.readonly',
+      // Add other scopes as needed
+    ];
+
+    const credentials = {
+      "installed": {
+        "redirect_uris": redirectUris,
+        "client_id": clientId,
+        "client_secret": clientSecret,
+        "project_id": projectId
+      }
+    }
+
+    const serviceAccountAuth = new JWT({
+      email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+      key: process.env.GOOGLE_PRIVATE_KEY,
+      scopes: [
+        'https://www.googleapis.com/auth/spreadsheets',
+      ],
+    });
+
+    debugger;
+
+    const doc = new GoogleSpreadsheet('<the sheet ID from the url>', serviceAccountAuth);
+
+    await doc.loadInfo(); // loads document properties and worksheets
+    console.log(doc.title);
+    await doc.updateProperties({ title: 'renamed doc' });
 
     const { client, tokens } = await authenticateAndTokenize(credentials, scopes);
 
@@ -48,17 +72,18 @@ const scopes = [
       auth: client, // Assuming 'client' is your authorized OAuth2 client
     });
 
+
     const event = {
-      'summary': '11 Google I/O 2015',
+      'summary': 'Google I/O 2015',
       'location': '800 Howard St., San Francisco, CA 94103',
       'description': 'A chance to hear more about Google\'s developer products.',
       'start': {
-        'dateTime': '2023-12-17T09:00:00+08:00',
-        'timeZone': 'Asia/Taipei',
+        'dateTime': '2023-12-28T09:00:00-07:00',
+        'timeZone': 'America/Los_Angeles',
       },
       'end': {
-        'dateTime': '2023-12-17T17:00:00+08:00',
-        'timeZone': 'Asia/Taipei',
+        'dateTime': '2023-12-28T17:00:00-07:00',
+        'timeZone': 'America/Los_Angeles',
       },
       'recurrence': [
         'RRULE:FREQ=DAILY;COUNT=2'
@@ -75,10 +100,10 @@ const scopes = [
         ],
       },
     };
-
+    debugger;
 
     calendar.events.insert({
-      auth: client,
+      auth: auth,
       calendarId: 'primary',
       resource: event,
     }, function (err, event) {
@@ -86,10 +111,8 @@ const scopes = [
         console.log('There was an error contacting the Calendar service: ' + err);
         return;
       }
-      debugger;
-      console.log('Event created: %s', event.data.htmlLink);
+      console.log('Event created: %s', event.htmlLink);
     });
-
 
 
     const apis = google.getSupportedAPIs();

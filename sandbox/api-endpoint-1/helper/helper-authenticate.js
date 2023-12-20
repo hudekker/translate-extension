@@ -4,10 +4,12 @@ import { OAuth2Client } from "google-auth-library";
 import http from "http";
 import https from "https";
 import { URL } from "url";
-import open from "open";
+import opn from "open";
 
-const authenticateAndTokenize = async (credentials, scopes) => {
+const authenticateAndTokenize = async (options) => {
   return new Promise((resolve, reject) => {
+    const { credentials } = options;
+    const scopes = options.scopes;
     const keys = credentials.installed || credentials.web;
     const redirectUriString = keys.redirect_uris;
     const redirectUri = new URL(redirectUriString);
@@ -26,31 +28,15 @@ const authenticateAndTokenize = async (credentials, scopes) => {
         client.credentials = tokens;
 
         // const apis = google.getSupportedAPIs();
-        // res.end('Authentication successful! Drive initialized.');
 
-        // Construct HTML response with a script to close the window
-        const htmlResponse = `
-          <html>
-          <head>
-            <title>Authorization Successful</title>
-          </head>
-          <body>
-            <h1>Authorization Successful! Drive initialized.</h1>
-          </body>
-          </html>
-        `;
-
-        // Send HTML response
-        res.setHeader('Content-Type', 'text/html');
-        res.end(htmlResponse);
-
+        res.end('Authenticated and tokenized');
 
         // Resolve with an object containing both gdrive and tokens
         resolve({ client, tokens });
 
       } catch (e) {
         console.error(e);
-        res.end('Error during authentication.');
+        res.end('Error during authentication and/or tokenization');
         reject(e);
       } finally {
         server.close();
@@ -68,10 +54,9 @@ const authenticateAndTokenize = async (credentials, scopes) => {
         access_type: 'offline',
         scope: scopes.join(' ')
       });
-      open(authorizeUrl, { wait: false }).then(cp => cp.unref());
+      opn(authorizeUrl, { wait: false }).then(cp => cp.unref());
     });
   });
 };
 
 export { authenticateAndTokenize };
-
