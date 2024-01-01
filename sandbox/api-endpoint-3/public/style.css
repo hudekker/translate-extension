@@ -1,0 +1,58 @@
+#folder-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 800px; /* Set maximum width for the container */
+  margin: 0 auto; /* Center the container horizontally */
+  overflow-x: hidden; /* Hide horizontal overflow */
+}
+
+.folder {
+  width: 100%;
+  max-width: 100%; /* Ensure folder does not exceed container width */
+  box-sizing: border-box; /* Include padding and border in element's total width */
+  margin-bottom: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap; /* Prevent text wrapping */
+  overflow: hidden; /* Hide text overflow */
+  text-overflow: ellipsis; /* Display ellipsis (...) for overflow text */
+}
+
+.folder:hover {
+  background-color: #f5f5f5;
+}
+
+.folder.has-children {
+  background-color: #e8f5e9;
+}
+
+.folder.no-children {
+  background-color: #e0e0e0;
+}
+
+.arrow-buttons {
+  display: inline-block;
+  margin-right: 10px; /* Add some spacing between the arrow buttons and the folder name */
+}
+
+.arrow {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem; /* Adjust the font size as needed */
+}
+
+.up-arrow {
+  margin-bottom: -3px; /* Adjust vertical positioning if needed */
+}
+
+.down-arrow {
+  margin-top: -3px; /* Adjust vertical positioning if needed */
+}

@@ -34,8 +34,9 @@ async function runSample(query) {
   params.q = query;
 
   const params2 = {
-    pageSize: 100,
-    fields: 'files(kind, driveId, fileExtension, copyRequiresWriterPermission, md5Checksum, contentHints(indexableText, thumbnail), writersCanShare, viewedByMe, mimeType, exportLinks, parents, thumbnailLink, iconLink, shared, lastModifyingUser, owners, headRevisionId, sharingUser, webViewLink, webContentLink, size, viewersCanCopyContent, permissions, hasThumbnail, spaces, folderColorRgb, id, name, description, starred, trashed, explicitlyTrashed, createdTime, modifiedTime, modifiedByMeTime, viewedByMeTime, sharedWithMeTime, quotaBytesUsed, version, originalFilename, ownedByMe, fullFileExtension, properties, appProperties, isAppAuthorized, teamDriveId, capabilities, hasAugmentedPermissions, trashingUser, thumbnailVersion, trashedTime, modifiedByMe, permissionIds, imageMediaMetadata, videoMediaMetadata, shortcutDetails, contentRestrictions, resourceKey, linkShareMetadata, labelInfo, sha1Checksum, sha256Checksum)',
+    pageSize: 200,
+    fields: 'files(kind, id, name, mimeType)'
+    // fields: 'files(kind, driveId, fileExtension, copyRequiresWriterPermission, md5Checksum, contentHints(indexableText, thumbnail), writersCanShare, viewedByMe, mimeType, exportLinks, parents, thumbnailLink, iconLink, shared, lastModifyingUser, owners, headRevisionId, sharingUser, webViewLink, webContentLink, size, viewersCanCopyContent, permissions, hasThumbnail, spaces, folderColorRgb, id, name, description, starred, trashed, explicitlyTrashed, createdTime, modifiedTime, modifiedByMeTime, viewedByMeTime, sharedWithMeTime, quotaBytesUsed, version, originalFilename, ownedByMe, fullFileExtension, properties, appProperties, isAppAuthorized, teamDriveId, capabilities, hasAugmentedPermissions, trashingUser, thumbnailVersion, trashedTime, modifiedByMe, permissionIds, imageMediaMetadata, videoMediaMetadata, shortcutDetails, contentRestrictions, resourceKey, linkShareMetadata, labelInfo, sha1Checksum, sha256Checksum)',
   }
 
   // const params3 = {
@@ -62,50 +63,14 @@ async function runSample(query) {
 
   // params3.q = '1FkGGs_ymjiPuOIVVG0E4N8vfUJQnQg9U in parents'
 
-  const res = await drive.files.list(params3);
+  const res = await drive.files.list(params2);
   debugger;
   // console.log(res.data);
   let listing = res.data.files
 
-  debugger;
-
-  listing = listing.filter(el => { if (el.parents) return true })
-
-  function filterFilesByMultipleParents(files) {
-    let filteredFile = files.filter(file => {
-      if (file && file.parents) {
-        const parentsArray = file.parents ? JSON.parse(file.parents) : [];
-        return Array.isArray(parentsArray) && parentsArray.length > 1;
-      }
-    });
-
-    debugger;
-
-    return filteredFile;
-  }
-
-  const updatedFiles = listing.map(file => {
-    const updatedFile = {
-      ...file,
-      parents: JSON.stringify(file.parents),
-    };
-
-    if (updatedFile.imageMediaMetadata && typeof updatedFile.imageMediaMetadata.location === 'object') {
-      updatedFile.imageMediaMetadata.location = JSON.stringify(updatedFile.imageMediaMetadata.location);
-    }
-
-    return updatedFile;
-  });
 
 
-  const filteredFiles = filterFilesByMultipleParents(updatedFiles);
-  // console.log(filteredFiles);
-  // const updatedFiles = listing.map(file => ({
-  //   ...file,
-  //   parents: JSON.stringify(file.parents),
-  // }));
-
-  console.log(updatedFiles);
+  console.log(listing);
 
 
   return res.data;

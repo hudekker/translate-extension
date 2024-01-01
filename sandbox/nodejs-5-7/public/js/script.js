@@ -1,0 +1,73 @@
+let pickerApiLoaded = false;
+
+function onApiLoad() {
+  gapi.load("auth", { callback: onAuthApiLoad });
+  gapi.load("picker", { callback: onPickerApiLoad });
+}
+
+function onAuthApiLoad() {
+  gapi.auth.setToken({ access_token: TOKEN });
+  createPicker();
+}
+
+function onPickerApiLoad() {
+  pickerApiLoaded = true;
+  createPicker();
+}
+
+// function createPicker() {
+//   if (pickerApiLoaded && TOKEN) {
+//     var picker = new google.picker.PickerBuilder()
+//       .addView(google.picker.ViewId.DOCS)
+//       .addView(google.picker.ViewId.FOLDERS)
+//       .setOAuthToken(TOKEN)
+//       .setDeveloperKey(API_KEY)
+//       .setCallback(pickerCallback)
+//       .build();
+//     picker.setVisible(true);
+//   }
+// }
+
+// function createPicker() {
+//   if (pickerApiLoaded && TOKEN) {
+//     var picker = new google.picker.PickerBuilder()
+//       .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
+//       .setOAuthToken(TOKEN)
+//       .setDeveloperKey(API_KEY)
+//       .setCallback(pickerCallback)
+//       .addView(google.picker.ViewId.DOCS)
+//       .addView(google.picker.ViewId.FOLDERS)
+//       .addView(new google.picker.DocsView()) // For viewing all types of documents
+//       .addView(new google.picker.DocsUploadView()) // For uploading documents
+//       .build();
+//     picker.setVisible(true);
+//   }
+// }
+
+function createPicker() {
+  if (pickerApiLoaded && TOKEN) {
+    // var uploadView = new google.picker.DocsUploadView().setIncludeFolders(true); // Allows users to see and select folders
+    var uploadView = new google.picker.DocsUploadView();
+    var folderId = "Miscel"; // Replace with your target folder ID
+    uploadView.setParent(folderId);
+
+    var picker = new google.picker.PickerBuilder()
+      .setOAuthToken(TOKEN)
+      .setDeveloperKey(API_KEY)
+
+      .setCallback(pickerCallback)
+      .addView(new google.picker.DocsView().setSelectFolderEnabled(true)) // For viewing all types of documents
+      .addView(uploadView) // For uploading documents to a specific folder
+      .build();
+    picker.setVisible(true);
+  }
+}
+
+function pickerCallback(data) {
+  if (data.action == google.picker.Action.PICKED) {
+    var fileId = data.docs[0].id;
+    alert("The user selected: " + fileId);
+  }
+}
+
+document.getElementById("pick-button").addEventListener("click", onApiLoad);

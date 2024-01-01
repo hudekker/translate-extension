@@ -15,6 +15,7 @@ node_modules/
 **/temp*.json
 **/oath*.json
 
+ignore/
 
 # Environment variables
 .env

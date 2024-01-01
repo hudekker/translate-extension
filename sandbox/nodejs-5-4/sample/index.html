@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>Google Drive File Picker Example</title>
+</head>
+<body>
+	<button type="button" id="pick">Pick File</button>
+	
+	<script src="script.js"></script>
+	<script>
+		function initPicker() {
+			var picker = new FilePicker({
+				apiKey: 'AIzaSyD1WjB3Exm9NVxw4IgwE-qN-n7nhx76icw',
+				clientId: '138224583990-bu3h1m4gqipmpmqjhrq9af9jb9ug2ffu.apps.googleusercontent.com',
+				buttonEl: document.getElementById('pick'),
+				onSelect: function(file) {
+					console.log(file);
+					alert('Selected ' + file.title);
+				}
+			});	
+		}
+	</script>
+	
+	<script src="https://www.google.com/jsapi?key=AIzaSyD1WjB3Exm9NVxw4IgwE-qN-n7nhx76icw"></script>
+	<script src="https://apis.google.com/js/client.js?onload=initPicker"></script>
+</body>
+</html>

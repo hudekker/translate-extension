@@ -16,6 +16,7 @@ const projectId = process.env.PROJECT_ID;
 const scopes = [
   'https://www.googleapis.com/auth/drive',
   'https://www.googleapis.com/auth/calendar',
+  'https://www.googleapis.com/auth/spreadsheets'
   // 'https://www.googleapis.com/auth/drive.metadata.readonly',
   // Add other scopes as needed
 ];
@@ -91,8 +92,32 @@ const scopes = [
     });
 
 
+    debugger;
+
+    const sheets = google.sheets({
+      version: 'v4',
+      auth: client
+    });
+
+
+    const res = await sheets.spreadsheets.values.get({
+      spreadsheetId: '1LdKIcGnsYOjSvw3UnaUVDVqbD3wwKfd9ouijYQZewBI',
+      range: 'Sheet1!A1:B2',
+    });
+
+    // const rows = res.data.values;
+    // if (!rows || rows.length === 0) {
+    //   console.log('No data found.');
+    //   return;
+    // }
+    // console.log('Name, Major:');
+    // rows.forEach((row) => {
+    //   // Print columns A and E, which correspond to indices 0 and 4.
+    //   console.log(`${row[0]}, ${row[4]}`);
+    // });
 
     const apis = google.getSupportedAPIs();
+    debugger;
 
     // console.log('done!');
     await listEvents(calendar);
