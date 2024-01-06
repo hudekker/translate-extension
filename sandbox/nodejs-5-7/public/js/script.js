@@ -47,16 +47,44 @@ function onPickerApiLoad() {
 function createPicker() {
   if (pickerApiLoaded && TOKEN) {
     // var uploadView = new google.picker.DocsUploadView().setIncludeFolders(true); // Allows users to see and select folders
-    var uploadView = new google.picker.DocsUploadView();
-    var folderId = "Miscel"; // Replace with your target folder ID
-    uploadView.setParent(folderId);
+    var uploadView = new google.picker.DocsUploadView().setIncludeFolders(true);
+    var folderId = "1-DDeqhkO_ePNTd2_1KkI2TvveyfSCb9u"; // Miscel
+    uploadView.setParent();
+
+    // new google.picker.DocsView().setIncludeFolders(true).setOwnedByMe(true);
+
+    // let docsView = new google.picker.DocsView(google.picker.ViewId.FOLDERS)
+    //   .setParent("root")
+    //   .setSelectFolderEnabled(true);
+
+    // New stuff
+    // var docsView = new google.picker.DocsView()
+    //   .setIncludeFolders(true)
+    //   .setSelectFolderEnabled(true);
+
+    // var picker = new google.picker.PickerBuilder()
+    //   .enableFeature(google.picker.Feature.MINE_ONLY)
+    //   .enableFeature(google.picker.Feature.NAV_HIDDEN)
+    //   .setAppId(appId)
+    //   .setOAuthToken(oauthToken)
+    //   .setDeveloperKey(developerKey)
+    //   .addView(docsView)
+    //   .setCallback(pickerCallback)
+    //   .build();
+    // picker.setVisible(true);
+    // end new stuff
 
     var picker = new google.picker.PickerBuilder()
       .setOAuthToken(TOKEN)
       .setDeveloperKey(API_KEY)
+      .addView(
+        new google.picker.DocsView().setIncludeFolders(true).setOwnedByMe(true)
+      )
+      // .addView(new google.picker.DocsView().setSelectFolderEnabled(true)) // For viewing all types of documents
+
+      .enableFeature(google.picker.Feature.MULTISELECT_ENABLED)
 
       .setCallback(pickerCallback)
-      .addView(new google.picker.DocsView().setSelectFolderEnabled(true)) // For viewing all types of documents
       .addView(uploadView) // For uploading documents to a specific folder
       .build();
     picker.setVisible(true);
@@ -66,7 +94,11 @@ function createPicker() {
 function pickerCallback(data) {
   if (data.action == google.picker.Action.PICKED) {
     var fileId = data.docs[0].id;
-    alert("The user selected: " + fileId);
+    debugger;
+    // url = doc[google.picker.Document.URL];
+    console.log("The user selected: " + fileId);
+    let url = data.docs[0].url;
+    window.open(url, "_blank");
   }
 }
 

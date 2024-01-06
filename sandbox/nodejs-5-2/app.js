@@ -22,7 +22,7 @@ import { GoogleSpreadsheet } from "google-spreadsheet";
     const projectId = process.env.PROJECT_ID;
     const scopes = [
       "https://www.googleapis.com/auth/drive",
-      "https://www.googleapis.com/auth/calendar.readonly",
+      "https://www.googleapis.com/auth/calendar",
       // 'https://www.googleapis.com/auth/drive.metadata.readonly',
       // Add other scopes as needed
     ];

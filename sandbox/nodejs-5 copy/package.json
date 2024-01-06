@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,6 +17,7 @@
     "fs": "^0.0.1-security",
     "googleapis": "^129.0.0",
     "http": "^0.0.1-security",
+    "open": "^10.0.0",
     "opn": "^6.0.0",
     "path": "^0.12.7",
     "server-destroy": "^1.0.1",

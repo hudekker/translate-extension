@@ -48,11 +48,15 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 const readTextContent = (sendResponse) => {
   // Get the language from (lang1) and to (lang2)
-  const lang1 = document.querySelectorAll('button[data-language-code][aria-selected="true"]')[0].dataset.languageCode;
+  const lang1 = document.querySelectorAll(
+    'button[data-language-code][aria-selected="true"]'
+  )[0].dataset.languageCode;
 
   console.log(`lang1= ${lang1}`);
 
-  const lang2 = document.querySelectorAll('button[data-language-code][aria-selected="true"]')[1].dataset.languageCode;
+  const lang2 = document.querySelectorAll(
+    'button[data-language-code][aria-selected="true"]'
+  )[1].dataset.languageCode;
 
   console.log(`lang2= ${lang2}`);
 
@@ -96,7 +100,8 @@ const readTextContent = (sendResponse) => {
   const firstSiblingAfterTextarea = firstTextarea.nextElementSibling;
 
   const textareaContent = firstSiblingAfterTextarea.innerHTML;
-  const origArray = textareaContent.split("\n\n");
+  const origArray = textareaContent.split(/\n+/);
+  // const origArray = textareaContent.split("\n\n");
   // const origArray = sentencesArray[0].split("\n\n");
   console.log("Original Array:", origArray);
 
@@ -110,7 +115,8 @@ const readTextContent = (sendResponse) => {
 
 let displayPairedParagraphs = (origArray, transArray) => {
   // Create a new HTML document in the new tab
-  const newTabDocument = document.implementation.createHTMLDocument("Paired Paragraphs");
+  const newTabDocument =
+    document.implementation.createHTMLDocument("Paired Paragraphs");
 
   // Append paired paragraphs to the new document
   for (let i = 0; i < Math.min(origArray.length, transArray.length); i++) {
@@ -147,7 +153,10 @@ function notifyBackgroundOnRefresh(callback) {
     // Send the message to the background script
     chrome.runtime.sendMessage({ refresh: true }, (response) => {
       if (chrome.runtime.lastError) {
-        console.error("Failed to notify background about refresh:", chrome.runtime.lastError);
+        console.error(
+          "Failed to notify background about refresh:",
+          chrome.runtime.lastError
+        );
       } else {
         console.log("Background notified about refresh");
         if (callback) {
@@ -168,11 +177,14 @@ const handleCustomEvent = () => {
   console.log("Custom event received in content.js");
 
   // Send a message to the background script
-  chrome.runtime.sendMessage({ action: "gotoChatgpt", data: "yourData" }, (response) => {
-    // Handle the response from the background script if needed
-    debugger;
-    console.log("on return: finished sending to gotoChatgpt");
-  });
+  chrome.runtime.sendMessage(
+    { action: "gotoChatgpt", data: "yourData" },
+    (response) => {
+      // Handle the response from the background script if needed
+      debugger;
+      console.log("on return: finished sending to gotoChatgpt");
+    }
+  );
 };
 
 // Listen for the custom event gotoChatgpt from script.js

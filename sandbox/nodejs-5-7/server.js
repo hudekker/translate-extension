@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const { authenticateAndTokenize } = require("./helper/helper-authenticate.js");
+const { getTree } = require("./helper/helper-tree.js");
 const { config } = require("dotenv");
 const { google } = require("googleapis");
 const fs = require("fs");
@@ -54,13 +55,11 @@ app.get("/auth", (req, res) => {
 
   console.log("inside auth");
   console.log(authUrl);
-  debugger;
 
   res.redirect(authUrl);
 });
 
 app.get("/robbie", async (req, res) => {
-  debugger;
   const { tokens } = await oauth2Client.getToken(req.query.code);
 
   console.log("inside robbie");
@@ -72,7 +71,18 @@ app.get("/robbie", async (req, res) => {
 });
 
 // Now modify your '/' route to accept the token
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+  // const { client } = await authenticateAndTokenize(credentials, scopes);
+
+  // // Initialize Google Drive client
+  // const gdrive = google.drive({
+  //   version: "v3",
+  //   auth: client,
+  // });
+
+  // let tree = await getTree(gdrive);
+  // console.table(tree);
+
   res.render("index", {
     clientId: clientId,
     apiKey: apiKey,
