@@ -5,6 +5,7 @@ const { getTree } = require("./helper/helper-tree.js");
 const { config } = require("dotenv");
 const { google } = require("googleapis");
 const fs = require("fs");
+const { OAuth2Client } = require("google-auth-library");
 
 config();
 
@@ -60,11 +61,33 @@ app.get("/auth", (req, res) => {
 });
 
 app.get("/robbie", async (req, res) => {
+  const client = new OAuth2Client({
+    clientId,
+    clientSecret,
+  });
+
   const { tokens } = await oauth2Client.getToken(req.query.code);
+
+  client.credentials = tokens;
 
   console.log("inside robbie");
 
   oauth2Client.setCredentials(tokens);
+
+  // Initialize Google Drive client
+  const gdrive = google.drive({
+    version: "v3",
+    auth: client,
+  });
+
+  // Initialize Google Calendar client
+  const calendar = google.calendar({
+    version: "v3",
+    auth: client, // Assuming 'client' is your authorized OAuth2 client
+  });
+
+  let tree = await getTree(gdrive);
+  console.table(tree);
 
   // Here, you would typically store the tokens securely and redirect to your front-end
   res.redirect("/?token=" + tokens.access_token);

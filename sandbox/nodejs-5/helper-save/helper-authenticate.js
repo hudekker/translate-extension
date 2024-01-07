@@ -1,11 +1,10 @@
 "use strict";
 const { OAuth2Client } = require("google-auth-library");
-// const { google } = require("googleapis"); // Commented out since it's not used
+// const { google } = require("googleapis");
 const http = require("http");
 const https = require("https");
 const { URL } = require("url");
-
-const open = require("opn"); // Use opn instead of open
+const open = require("opn");
 
 const authenticateAndTokenize = async (credentials, scopes) => {
   return new Promise((resolve, reject) => {

@@ -47,9 +47,12 @@ function onPickerApiLoad() {
 function createPicker() {
   if (pickerApiLoaded && TOKEN) {
     // var uploadView = new google.picker.DocsUploadView().setIncludeFolders(true); // Allows users to see and select folders
-    var uploadView = new google.picker.DocsUploadView().setIncludeFolders(true);
-    var folderId = "1-DDeqhkO_ePNTd2_1KkI2TvveyfSCb9u"; // Miscel
-    uploadView.setParent();
+    var uploadView = new google.picker.DocsUploadView()
+      .setParent()
+      .setIncludeFolders(true);
+    // var uploadView = new google.picker.DocsUploadView();
+    // var folderId = "1-DDeqhkO_ePNTd2_1KkI2TvveyfSCb9u"; // Miscel
+    // uploadView.setParent(folderId);
 
     // new google.picker.DocsView().setIncludeFolders(true).setOwnedByMe(true);
 
@@ -88,6 +91,8 @@ function createPicker() {
       .addView(uploadView) // For uploading documents to a specific folder
       .build();
     picker.setVisible(true);
+
+    debugger;
   }
 }
 
@@ -97,8 +102,10 @@ function pickerCallback(data) {
     debugger;
     // url = doc[google.picker.Document.URL];
     console.log("The user selected: " + fileId);
-    let url = data.docs[0].url;
-    window.open(url, "_blank");
+    if (data.viewToken[0] !== "upload") {
+      let url = data.docs[0].url;
+      window.open(url, "_blank");
+    }
   }
 }
 
